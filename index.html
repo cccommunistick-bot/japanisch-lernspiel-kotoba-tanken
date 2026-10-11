@@ -8,10 +8,11 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap');
     :root{--paper:#f6f3eb;--white:#fffefa;--ink:#202d39;--muted:#77818a;--line:#e8e4da;--navy:#183d54;--teal:#347d76;--mint:#e7f2ec;--gold:#efbd5b;--red:#a84f4b;--shadow:0 14px 40px #23394b12}
-    *{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans','Noto Sans JP',sans-serif;min-height:100vh} button{font:inherit;color:inherit;cursor:pointer} .jp{font-family:'Noto Sans JP',sans-serif;line-height:1.8}
+    *{box-sizing:border-box} [hidden]{display:none!important} body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans','Noto Sans JP',sans-serif;min-height:100vh} button{font:inherit;color:inherit;cursor:pointer} .jp{font-family:'Noto Sans JP',sans-serif;line-height:1.8}
     .shell{max-width:1100px;padding:28px 28px 56px;margin:auto}.topline{display:flex;align-items:center;justify-content:space-between;margin-bottom:42px}.brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:700;letter-spacing:.05em}.mark{height:39px;width:39px;border-radius:14px;background:var(--navy);color:#fff;display:grid;place-items:center;font-family:'Noto Sans JP';font-size:19px}.today{font-size:13px;color:var(--muted)}
     .hero{display:grid;grid-template-columns:1.25fr .75fr;gap:25px;align-items:stretch;margin-bottom:28px}.hero-copy{padding:20px 4px}.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--teal)}h1{font-size:clamp(34px,5vw,54px);line-height:1.08;letter-spacing:-.045em;margin:13px 0 15px;max-width:600px}.hero p{color:#66727b;line-height:1.65;max-width:510px;font-size:15px;margin:0}.daily-card{background:var(--navy);border-radius:23px;color:#fff;padding:25px 27px;position:relative;overflow:hidden;min-height:180px;box-shadow:var(--shadow)}.daily-card:after{content:'湯';font-family:'Noto Sans JP';font-size:125px;position:absolute;right:7px;bottom:-44px;opacity:.09}.daily-top{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:#b8d6cf;font-weight:700}.daily-word{font:600 30px 'Noto Sans JP';margin:13px 0 0}.daily-translation{color:#d9e7e4;font-size:14px}.daily-card button{margin-top:19px;border:0;background:#ffffff1d;color:white;padding:10px 13px;border-radius:10px;font-size:12px;font-weight:700}
     .stats{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 26px}.stat{background:#fffefa9e;border:1px solid var(--line);padding:9px 13px;border-radius:12px;font-size:12px;color:var(--muted)}.stat strong{color:var(--ink);font-size:14px;margin-right:4px}
+    .lesson-picker{margin:8px 0 28px}.lesson-picker h2{font-size:21px;margin:0 0 7px}.lesson-picker>p{color:var(--muted);font-size:14px;margin:0 0 17px}.lesson-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.lesson-card{border:1px solid var(--line);background:var(--white);border-radius:18px;text-align:left;padding:21px 23px;box-shadow:var(--shadow);transition:.16s}.lesson-card:hover{transform:translateY(-2px);border-color:#9dbdb1}.lesson-date{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);font-weight:700}.lesson-card strong{display:block;font-size:18px;margin:9px 0 5px}.lesson-card span:last-child{color:var(--muted);font-size:13px;line-height:1.5}.lesson-header{display:flex;align-items:center;justify-content:space-between;gap:15px;margin:0 0 18px;padding:13px 15px;border:1px solid var(--line);background:#fffefa9e;border-radius:14px}.lesson-header strong{display:block;font-size:15px}.lesson-header span{font-size:12px;color:var(--muted)}
     .game{background:var(--white);border:1px solid #ebe7dd;border-radius:24px;box-shadow:var(--shadow);overflow:hidden}.modebar{display:flex;gap:6px;padding:10px;border-bottom:1px solid var(--line);background:#fcfbf7}.mode{border:0;background:transparent;color:var(--muted);font-weight:700;font-size:13px;padding:12px 16px;border-radius:11px}.mode.active{background:var(--navy);color:white}.game-inner{padding:clamp(22px,5vw,48px);min-height:420px}.mode-heading{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:25px}.mode-heading h2{font-size:20px;margin:0 0 5px;letter-spacing:-.02em}.mode-heading p{margin:0;color:var(--muted);font-size:13px}.progress-label{white-space:nowrap;font-size:12px;color:var(--muted)}.progress{height:5px;background:#eeece6;border-radius:8px;margin-bottom:28px;overflow:hidden}.progress span{height:100%;display:block;width:0;background:var(--teal);transition:width .3s ease}
     .prompt-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.13em;font-weight:700;margin-bottom:12px}.prompt{font-size:clamp(24px,4vw,34px);line-height:1.5;letter-spacing:-.025em;margin:0 0 22px}.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}.choice{border:1px solid var(--line);background:white;padding:15px 17px;text-align:left;border-radius:13px;line-height:1.45;transition:.15s}.choice:hover:not(:disabled){border-color:#91b8aa;background:#fbfdf9;transform:translateY(-1px)}.choice:disabled{cursor:default}.choice.correct{border-color:#8bb8a0;background:#eff7f1}.choice.wrong{border-color:#d89b91;background:#fbf0ed}.choice .jp{font-size:18px;display:block}.choice .translation{color:var(--muted);font-size:14px}
     .feedback{display:none;margin-top:18px;padding:14px 16px;border-radius:13px;line-height:1.5;font-size:14px}.feedback.show{display:flex;justify-content:space-between;align-items:center;gap:12px}.feedback.good{background:var(--mint);color:#285c47}.feedback.bad{background:#fbefeb;color:#8d403c}.feedback button{border:0;border-radius:9px;background:var(--navy);color:#fff;padding:10px 14px;font-weight:700;font-size:12px;white-space:nowrap}
@@ -19,19 +20,27 @@
     .puzzle-area{max-width:750px;margin:auto}.puzzle-translation{color:var(--muted);margin:-8px 0 20px;font-size:14px}.answer-zone{min-height:68px;border:1px dashed #b7c7be;background:#f7f9f4;border-radius:14px;padding:11px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:15px}.answer-zone.empty:before{content:'Tippe die Satzteile in der richtigen Reihenfolge an …';font-size:13px;color:#98a19d}.tiles{display:flex;gap:8px;flex-wrap:wrap}.tile{border:1px solid #d9dfd8;background:#fff;border-radius:10px;padding:10px 13px;font:500 17px 'Noto Sans JP';box-shadow:0 2px 0 #e7e8df}.tile:hover{border-color:var(--teal)}.tile.used{visibility:hidden;pointer-events:none}.tile.in-answer{background:#eaf2ec;border-color:#c6d9cb}.puzzle-controls{display:flex;gap:9px;margin-top:22px}.puzzle-result{font-size:14px;margin-top:15px;min-height:24px}.puzzle-result.good{color:#285c47}.puzzle-result.bad{color:var(--red)}
     .end-screen{display:none;text-align:center;padding:45px 15px}.end-screen.show{display:block}.end-icon{font-size:43px}.end-screen h2{font-size:28px;margin:14px 0 8px}.end-screen p{color:var(--muted)}.end-screen button{margin-top:12px}
     footer{display:flex;justify-content:space-between;gap:18px;margin-top:20px;color:#879098;font-size:11px;line-height:1.55}.footer-right{text-align:right}
-    @media(max-width:700px){.shell{padding:20px 16px 38px}.topline{margin-bottom:24px}.hero{grid-template-columns:1fr;gap:8px}.hero-copy{padding:7px 0}.daily-card{min-height:165px}.choices{grid-template-columns:1fr}.game-inner{padding:24px 18px}.modebar{overflow:auto}.mode{white-space:nowrap;padding:11px 13px}.mode-heading{align-items:flex-start}.stats{margin-bottom:18px}footer{display:block} .footer-right{text-align:left;margin-top:8px}}
+    @media(max-width:700px){.shell{padding:20px 16px 38px}.topline{margin-bottom:24px}.hero{grid-template-columns:1fr;gap:8px}.hero-copy{padding:7px 0}.daily-card{min-height:165px}.choices{grid-template-columns:1fr}.game-inner{padding:24px 18px}.modebar{overflow:auto}.mode{white-space:nowrap;padding:11px 13px}.mode-heading{align-items:flex-start}.stats{margin-bottom:18px}.lesson-grid{grid-template-columns:1fr}.lesson-header{align-items:flex-start;flex-direction:column}footer{display:block} .footer-right{text-align:left;margin-top:8px}}
   </style>
 </head>
 <body>
 <main class="shell">
-  <div class="topline"><div class="brand"><div class="mark">言</div><span>KOTOBA探検</span></div><div class="today">Deine Unterrichtsnotizen · 30. September</div></div>
+  <div class="topline"><div class="brand"><div class="mark">言</div><span>KOTOBA探検</span></div><div class="today">Deine Unterrichtsnotizen · 30. September &amp; 11. Oktober</div></div>
   <section class="hero">
     <div class="hero-copy"><div class="eyebrow">Japanisch lernen · spielerisch wiederholen</div><h1>Ein paar Wörter.<br>Ein großer Sprung.</h1><p>Trainiere Vokabeln, erkenne ganze Sätze, setze Satzteile zusammen und übe Kanji-Lesungen. Alles aus deinen Unterrichtsnotizen.</p></div>
-    <aside class="daily-card"><div class="daily-top">Wort des Tages</div><div class="daily-word jp"><ruby>湯舟<rt>ゆぶね</rt></ruby></div><div class="daily-translation">Badewanne · Wanne zum Baden</div><button onclick="setMode('cards')">✦ Mit Karteikarten üben</button></aside>
+    <aside class="daily-card"><div class="daily-top">Wort des Tages</div><div class="daily-word jp"><ruby>制服<rt>せいふく</rt></ruby></div><div class="daily-translation">Uniform · einheitliche Kleidung</div><button onclick="openLesson('oct11','cards')">✦ Mit Karteikarten üben</button></aside>
   </section>
-  <div class="stats"><div class="stat"><strong id="score">0</strong> richtige Antworten</div><div class="stat"><strong id="streak">0</strong> in Folge</div><div class="stat"><strong>4</strong> Spielmodi</div></div>
+  <section class="lesson-picker" id="lessonPicker" aria-label="Unterrichtstag auswählen">
+    <h2>Womit möchtest du üben?</h2><p>Wähle einen Unterrichtstag. Die Übungen und Kanji passen dann nur zu dieser Stunde.</p>
+    <div class="lesson-grid">
+      <button class="lesson-card" data-lesson="sep30"><span class="lesson-date">Unterricht · 30. September</span><strong>Alltag, Essen &amp; Baden</strong><span>Spazierengehen, Haushalt, Pizza, Badekultur und Kyoto.</span></button>
+      <button class="lesson-card" data-lesson="oct11"><span class="lesson-date">Unterricht · 11. Oktober</span><strong>Essen, Berlin &amp; Uniformen</strong><span>Deutsche Küche, Festival of Lights, Arbeit und Schuluniformen.</span></button>
+    </div>
+  </section>
+  <div class="lesson-header" id="lessonHeader" hidden><div><span>Ausgewählter Unterrichtstag</span><strong id="lessonTitle"></strong></div><button class="secondary" id="backToLessons">← Alle Unterrichtstage</button></div>
+  <div class="stats" id="stats" hidden><div class="stat"><strong id="score">0</strong> richtige Antworten</div><div class="stat"><strong id="streak">0</strong> in Folge</div><div class="stat"><strong>4</strong> Spielmodi</div></div>
 
-  <section class="game" aria-label="Japanisch-Lernspiel">
+  <section class="game" id="game" aria-label="Japanisch-Lernspiel" hidden>
     <nav class="modebar" aria-label="Spielmodus"><button class="mode active" data-mode="quiz">① Quiz</button><button class="mode" data-mode="cards">② Karteikarten</button><button class="mode" data-mode="puzzle">③ Satzpuzzle</button><button class="mode" data-mode="kanji">④ Kanji</button></nav>
     <div class="game-inner">
       <div id="quizView">
@@ -59,7 +68,7 @@
       <div class="end-screen" id="endScreen"><div class="end-icon">🎉</div><h2>Runde geschafft!</h2><p id="endMessage"></p><button class="primary" id="restartQuiz">Nochmal spielen</button></div>
     </div>
   </section>
-  <footer><span>Die kleinen Kana über den Kanji heißen Furigana und zeigen die Lesung.</span><span class="footer-right">Ein Hinweis: 一階 bedeutet im Japanischen meist Erdgeschoss; 1回 heißt „einmal“.<br>Bei 念 hängt die genaue Übersetzung vom Zusammenhang ab.</span></footer>
+  <footer><span>Die kleinen Kana über den Kanji heißen Furigana und zeigen die Lesung.</span><span class="footer-right">Ein Hinweis: <ruby>一階<rt>いっかい</rt></ruby> bedeutet meist Erdgeschoss; 1<ruby>回<rt>かい</rt></ruby> heißt „einmal“. <br>Die Endung <ruby>性<rt>せい</rt></ruby> bezeichnet oft eine Eigenschaft: <ruby>安全性<rt>あんぜんせい</rt></ruby>, <ruby>危険性<rt>きけんせい</rt></ruby> und <ruby>多様性<rt>たようせい</rt></ruby>.</span></footer>
 </main>
 <script>
 const items = [
@@ -91,6 +100,39 @@ const items = [
   {jp:'1回', de:'einmal', kind:'Wort', note:'Achtung: gleich ausgesprochen wie 一階, aber andere Bedeutung.'},
   {jp:'湯／お湯', de:'heißes Wasser; Badewasser', kind:'Wort', note:'お湯をためる = heißes Wasser einlaufen lassen.'},
   {jp:'週に1度', de:'einmal pro Woche', kind:'Ausdruck', note:'週に gibt an, wie oft pro Woche.'},
+  {jp:'昨日、お酒を飲みすぎました。', de:'Gestern habe ich zu viel Alkohol getrunken.', kind:'Satz', note:'～すぎる = zu viel / zu sehr; 飲みすぎる = zu viel trinken.'},
+  {jp:'ビールを8杯飲みました。', de:'Ich habe acht Gläser Bier getrunken.', kind:'Satz', note:'8杯（はっぱい）ist das Zählwort für acht Gläser; 杯 verändert je nach Zahl seine Aussprache.'},
+  {jp:'シュペッツレと鹿のグラーシュも食べました。', de:'Ich habe auch Spätzle und Hirschgulasch gegessen.', kind:'Satz', note:'鹿（しか）= Hirsch; も bedeutet hier „auch“.'},
+  {jp:'ベリーのジャムもついていました。', de:'Dazu gab es auch Beerenmarmelade.', kind:'Satz', note:'ついていました = war dabei / wurde dazu serviert.'},
+  {jp:'わたしはしばらくドイツ料理を食べていません。', de:'Ich habe eine Weile keine deutsche Küche gegessen.', kind:'Satz', note:'しばらく～ていません = seit einer Weile nicht … getan.'},
+  {jp:'ベルリンにはドイツ料理屋さんがあまりありません。', de:'In Berlin gibt es nicht besonders viele deutsche Restaurants.', kind:'Satz', note:'あまり + Verneinung = nicht besonders viel / oft.'},
+  {jp:'出掛ける', de:'ausgehen; das Haus verlassen', kind:'Wort', note:'出掛ける（でかける）wird für das Verlassen des Hauses verwendet.'},
+  {jp:'テレビ塔、ベルリン大聖堂やポツダマープラッツがプロジェクションマッピングできれいになります。', de:'Der Fernsehturm, der Berliner Dom und der Potsdamer Platz werden durch Projection Mapping wunderschön beleuchtet.', kind:'Satz', note:'きれいになります = werden schön; Projection Mapping wird auf Gebäude projiziert.'},
+  {jp:'毎年この時期にベルリンでやっています。', de:'Das findet jedes Jahr um diese Zeit in Berlin statt.', kind:'Satz', note:'毎年（まいとし）= jedes Jahr; この時期 = um diese Jahreszeit.'},
+  {jp:'フェスティバル・オブ・ライツ', de:'Festival of Lights; Berliner Lichterfest', kind:'Wort', note:'Name des jährlich in Berlin stattfindenden Lichterfestivals.'},
+  {jp:'金曜日は会社の会議がありました。', de:'Am Freitag hatte ich eine Besprechung bei der Arbeit.', kind:'Satz', note:'会議（かいぎ）= Besprechung; 会社（かいしゃ）= Firma.'},
+  {jp:'会議室', de:'Konferenzraum; Besprechungszimmer', kind:'Wort', note:'会議 + 室（しつ）= Raum für Besprechungen.'},
+  {jp:'土曜日はスーパーで昼12時から夜8時までアルバイトをしました。', de:'Am Samstag habe ich im Supermarkt von 12 Uhr mittags bis 20 Uhr gearbeitet.', kind:'Satz', note:'アルバイト = Nebenjob; 昼（ひる）= tagsüber, 夜（よる）= abends.'},
+  {jp:'日本で学生や職員は制服を着ています。', de:'In Japan tragen Schüler, Studierende und Angestellte Uniformen.', kind:'Satz', note:'着る（きる）= anziehen / tragen; 職員（しょくいん）= Beschäftigte.'},
+  {jp:'制服', de:'Uniform', kind:'Wort', note:'Einheitliche Kleidung, zum Beispiel in einer Schule oder Firma.'},
+  {jp:'わたしの会社には制服があります。', de:'In meiner Firma gibt es Uniformen.', kind:'Satz', note:'あります verwendet man für Dinge und Gegenstände.'},
+  {jp:'家で制服を着ていきます。', de:'Ich ziehe die Uniform zu Hause an und gehe dann damit los.', kind:'Satz', note:'着ていきます = anziehen und anschließend damit losgehen.'},
+  {jp:'くつは特別なくつですか？', de:'Sind das besondere Schuhe?', kind:'Satz', note:'靴（くつ）= Schuhe.'},
+  {jp:'はい、安全性の高い靴です。', de:'Ja, es sind Schuhe mit einem hohen Sicherheitsstandard.', kind:'Satz', note:'安全性（あんぜんせい）= Sicherheit; 高い（たかい）= hoch.'},
+  {jp:'制服は必要ですか？', de:'Ist eine Uniform notwendig?', kind:'Satz', note:'必要（ひつよう）= notwendig; erforderlich.'},
+  {jp:'危ない仕事をするときに必要です。', de:'Bei gefährlicher Arbeit ist sie notwendig.', kind:'Satz', note:'～するとき = wenn / zu dem Zeitpunkt, an dem man etwas tut.'},
+  {jp:'〜性', de:'Eigenschaft; Beschaffenheit', kind:'Wort', note:'Die Endung 性（せい）bildet oft Wörter für Eigenschaften oder Zustände.'},
+  {jp:'安全性', de:'Sicherheit; Sicherheitsgrad', kind:'Wort', note:'安全（あんぜん） + 性（せい）= Sicherheit.'},
+  {jp:'可能性', de:'Möglichkeit; Wahrscheinlichkeit', kind:'Wort', note:'可能（かのう） + 性（せい）= Möglichkeit.'},
+  {jp:'危険性', de:'Gefahr; Gefährlichkeit', kind:'Wort', note:'危険（きけん） + 性（せい）= Gefährlichkeit / Risiko.'},
+  {jp:'多様性', de:'Vielfalt; Diversität', kind:'Wort', note:'多様（たよう） + 性（せい）= Vielfalt; LGBTQ ist ein Beispiel für ein Thema rund um Diversität.'},
+  {jp:'日本は地震の危険性が高いです。', de:'In Japan ist das Erdbebenrisiko hoch.', kind:'Satz', note:'地震（じしん）= Erdbeben; 危険性が高い = ein hohes Risiko haben.'},
+  {jp:'学校で制服は必要だと思いますか？', de:'Findest du, dass Schuluniformen in der Schule nötig sind?', kind:'Satz', note:'～と思いますか = was denkst du / findest du …?'},
+  {jp:'必要じゃないけど、便利だと思います。', de:'Ich finde sie nicht notwendig, aber praktisch.', kind:'Satz', note:'じゃないけど ist eine umgangssprachliche Form von ではないけど.'},
+  {jp:'家がお金持ちかそうじゃないか、見えないからです。', de:'Denn man sieht nicht, ob eine Familie reich ist oder nicht.', kind:'Satz', note:'お金持ち（おかねもち）= wohlhabend; ～かそうじゃないか = ob … oder nicht.'},
+  {jp:'ランドセル', de:'Schulranzen', kind:'Wort', note:'In den Notizen steht als ungefähre Preisspanne 100 bis 1.000 Euro.'},
+  {jp:'ドイツのランドセルはかわいいですが、すごく重たいので1、2年しか使いません。', de:'Deutsche Schulranzen sind niedlich, aber sehr schwer, deshalb benutze ich sie nur ein oder zwei Jahre.', kind:'Satz', note:'しか + Verneinung = nur; 重たい（おもたい）= schwer.'},
+  {jp:'リーガルハイはおもしろいドラマです。', de:'„Legal High“ ist eine interessante Serie.', kind:'Satz', note:'ドラマ = Fernsehserie; おもしろい = interessant / unterhaltsam.'},
 ];
 const puzzles = [
  {de:'Danach bin ich in der Stadt spazieren gegangen.',parts:['そのあとで','まちで','散歩しました。']},
@@ -101,6 +143,15 @@ const puzzles = [
  {de:'Als Kind ging ich nur einmal pro Woche baden.',parts:['こどものころは','週に1度だけ','お風呂に','入りました。']},
  {de:'Man lässt heißes Wasser in die Wanne und wäscht sich darin.',parts:['湯舟の中に','お湯をためて','中で','体を洗います。']},
  {de:'Zum Schluss gießt man sich sauberes Wasser über den Kopf.',parts:['最後に','きれいなお湯を','頭から','かぶります。']},
+ {de:'Gestern habe ich zu viel Alkohol getrunken.',parts:['昨日','お酒を','飲みすぎました。']},
+ {de:'Ich habe acht Gläser Bier getrunken.',parts:['ビールを','8杯','飲みました。']},
+ {de:'In Berlin gibt es nicht besonders viele deutsche Restaurants.',parts:['ベルリンには','ドイツ料理屋さんが','あまり','ありません。']},
+ {de:'Am Freitag hatte ich eine Besprechung bei der Arbeit.',parts:['金曜日は','会社の会議が','ありました。']},
+ {de:'Am Samstag habe ich im Supermarkt von mittags bis abends gearbeitet.',parts:['土曜日は','スーパーで','昼12時から','夜8時まで','アルバイトをしました。']},
+ {de:'Bei gefährlicher Arbeit ist eine Uniform notwendig.',parts:['危ない仕事をするときに','制服は','必要です。']},
+ {de:'In Japan ist das Erdbebenrisiko hoch.',parts:['日本は','地震の危険性が','高いです。']},
+ {de:'Ich finde sie nicht notwendig, aber praktisch.',parts:['必要じゃないけど','便利だと','思います。']},
+ {de:'Das findet jedes Jahr um diese Zeit in Berlin statt.',parts:['毎年','この時期に','ベルリンで','やっています。']},
 ];
 const kanjiItems = [
   {word:'散歩',reading:'さんぽ',de:'Spaziergang'}, {word:'外',reading:'そと',de:'draußen'},
@@ -126,7 +177,27 @@ const kanjiItems = [
   {word:'最後',reading:'さいご',de:'Ende; Schluss'}, {word:'頭',reading:'あたま',de:'Kopf'},
   {word:'食器',reading:'しょっき',de:'Geschirr'}, {word:'同じ',reading:'おなじ',de:'gleich; derselbe'},
   {word:'洗い方',reading:'あらいかた',de:'Art zu waschen'}, {word:'車',reading:'くるま',de:'Auto'},
-  {word:'洗う',reading:'あらう',de:'waschen'}, {word:'洗車',reading:'せんしゃ',de:'Autowäsche'}
+  {word:'洗う',reading:'あらう',de:'waschen'}, {word:'洗車',reading:'せんしゃ',de:'Autowäsche'},
+  {word:'昨日',reading:'きのう',de:'gestern'}, {word:'お酒',reading:'おさけ',de:'Alkohol; Sake'},
+  {word:'飲みすぎる',reading:'のみすぎる',de:'zu viel trinken'}, {word:'8杯',reading:'はっぱい',de:'acht Gläser'},
+  {word:'鹿',reading:'しか',de:'Hirsch'}, {word:'食べる',reading:'たべる',de:'essen'},
+  {word:'料理',reading:'りょうり',de:'Küche; Gericht'}, {word:'出掛ける',reading:'でかける',de:'ausgehen'},
+  {word:'テレビ塔',reading:'てれびとう',de:'Fernsehturm'}, {word:'大聖堂',reading:'だいせいどう',de:'Kathedrale'},
+  {word:'毎年',reading:'まいとし',de:'jedes Jahr'}, {word:'時期',reading:'じき',de:'Jahreszeit; Zeitpunkt'},
+  {word:'金曜日',reading:'きんようび',de:'Freitag'}, {word:'会社',reading:'かいしゃ',de:'Firma'},
+  {word:'会議',reading:'かいぎ',de:'Besprechung'}, {word:'会議室',reading:'かいぎしつ',de:'Konferenzraum'},
+  {word:'土曜日',reading:'どようび',de:'Samstag'}, {word:'昼',reading:'ひる',de:'Mittag; tagsüber'},
+  {word:'夜',reading:'よる',de:'Abend; Nacht'}, {word:'学生',reading:'がくせい',de:'Schüler; Studierende'},
+  {word:'職員',reading:'しょくいん',de:'Beschäftigte; Angestellte'}, {word:'制服',reading:'せいふく',de:'Uniform'},
+  {word:'着る',reading:'きる',de:'anziehen; tragen'}, {word:'靴',reading:'くつ',de:'Schuhe'},
+  {word:'安全性',reading:'あんぜんせい',de:'Sicherheit'}, {word:'必要',reading:'ひつよう',de:'notwendig'},
+  {word:'可能性',reading:'かのうせい',de:'Möglichkeit'}, {word:'危険性',reading:'きけんせい',de:'Gefahr; Risiko'},
+  {word:'多様性',reading:'たようせい',de:'Vielfalt; Diversität'}, {word:'地震',reading:'じしん',de:'Erdbeben'},
+  {word:'高い',reading:'たかい',de:'hoch; teuer'}, {word:'学校',reading:'がっこう',de:'Schule'},
+  {word:'便利',reading:'べんり',de:'praktisch; bequem'}, {word:'お金持ち',reading:'おかねもち',de:'wohlhabend'},
+  {word:'ランドセル',reading:'らんどせる',de:'Schulranzen'}, {word:'重たい',reading:'おもたい',de:'schwer'},
+  {word:'使う',reading:'つかう',de:'benutzen'}, {word:'年',reading:'ねん',de:'Jahr'},
+  {word:'性',reading:'せい',de:'Eigenschaft (als Endung)'}
 ];
 const rubyReadings = {
   '買いました':'かいました', '散歩':'さんぽ', '外':'そと', '家':'いえ', '屋さん':'やさん', '屋':'や',
@@ -138,47 +209,92 @@ const rubyReadings = {
   '人形':'にんぎょう', '念':'ねん', '映画':'えいが', '週':'しゅう', '1度':'いちど', '一度':'いちど',
   '風呂':'ふろ', '湯舟':'ゆぶね', 'お湯':'おゆ', '湯':'ゆ', '入りました':'はいりました',
   '入ります':'はいります', '入る':'はいる', '中':'なか', '体':'からだ', '最後に':'さいごに', '最後':'さいご',
-  '頭':'あたま', '食器':'しょっき', '同じ':'おなじ', '洗い方':'あらいかた', '車':'くるま',
-  '洗います':'あらいます', '洗う':'あらう', '洗車':'せんしゃ', '時':'とき'
+  '頭':'あたま', '食器':'しょっき', '同じ':'おなじ', '洗い方':'あらいかた', '車':'くるま', '室':'しつ',
+  '洗います':'あらいます', '洗う':'あらう', '洗車':'せんしゃ', '時':'とき',
+  '昨日':'きのう', 'お酒':'おさけ', '飲みすぎました':'のみすぎました', '飲みすぎる':'のみすぎる',
+  '飲みました':'のみました', '8杯':'はっぱい', '杯':'はい', '鹿':'しか',
+  '食べました':'たべました', '食べていません':'たべていません', '食べる':'たべる', '料理屋さん':'りょうりやさん',
+  '料理':'りょうり', '出掛ける':'でかける', '出掛け':'でかけ', 'テレビ塔':'てれびとう', '大聖堂':'だいせいどう',
+  '毎年':'まいとし', '時期':'じき', '金曜日':'きんようび', '会社':'かいしゃ', '会議室':'かいぎしつ',
+  '会議':'かいぎ', '土曜日':'どようび', '昼12時':'ひるじゅうにじ', '夜8時':'よるはちじ',
+  '12時':'じゅうにじ', '8時':'はちじ', '昼':'ひる', '夜':'よる', '学生':'がくせい', '職員':'しょくいん',
+  '制服':'せいふく', '着ています':'きています', '着ていきます':'きていきます', '着る':'きる', '靴':'くつ',
+  '安全性':'あんぜんせい', '安全':'あんぜん', '高い':'たかい', '必要':'ひつよう', '可能性':'かのうせい',
+  '危ない':'あぶない', '仕事':'しごと', '特別':'とくべつ', '危険性':'きけんせい', '危険':'きけん', '多様性':'たようせい', '多様':'たよう', '地震':'じしん',
+  '学校':'がっこう', '便利':'べんり', '可能':'かのう', '思います':'おもいます', '思う':'おもう', 'お金持ち':'おかねもち',
+  '見えない':'みえない', 'ランドセル':'らんどせる', '重たい':'おもたい', '使いません':'つかいません',
+  '使う':'つかう', '年':'ねん', '性':'せい'
 };
 const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const rubyTerms = Object.keys(rubyReadings).sort((a,b)=>b.length-a.length);
 const rubyPattern = new RegExp(Object.entries(rubyReadings).sort((a,b)=>b[0].length-a[0].length).map(([word,reading])=>`${escapeRegExp(word)}(?:（${escapeRegExp(reading)}）)?`).join('|'),'g');
-function rubyText(text){return text.replace(rubyPattern,found=>{const word=rubyTerms.find(key=>found.startsWith(key));return `<ruby>${word}<rt>${rubyReadings[word]}</rt></ruby>`})}
+const rubyOverrides={
+  '2時間':'2<ruby>時間<rt>じかん</rt></ruby>', '昼12時':'<ruby>昼<rt>ひる</rt></ruby>12<ruby>時<rt>じ</rt></ruby>',
+  '夜8時':'<ruby>夜<rt>よる</rt></ruby>8<ruby>時<rt>じ</rt></ruby>', '12時':'12<ruby>時<rt>じ</rt></ruby>',
+  '8時':'8<ruby>時<rt>じ</rt></ruby>', '8杯':'8<ruby>杯<rt>はい</rt></ruby>', '1度':'1<ruby>度<rt>ど</rt></ruby>',
+  '1回':'1<ruby>回<rt>かい</rt></ruby>', '洗い方':'<ruby>洗<rt>あら</rt></ruby>い<ruby>方<rt>かた</rt></ruby>',
+  'テレビ塔':'テレビ<ruby>塔<rt>とう</rt></ruby>'
+};
+function rubyFor(word){
+  if(rubyOverrides[word])return rubyOverrides[word];
+  if(!/[\u3400-\u4dbf\u4e00-\u9fff々〆ヵヶ]/.test(word))return word;
+  const leading=(word.match(/^[ぁ-ゖー]+/)||[''])[0];
+  const trailing=(word.match(/[ぁ-ゖー]+$/)||[''])[0];
+  const end=word.length-trailing.length;
+  const kanjiPart=word.slice(leading.length,end);
+  if(!kanjiPart||/[ぁ-ゖ]/.test(kanjiPart))return word;
+  let reading=rubyReadings[word];
+  if(leading&&reading.startsWith(leading))reading=reading.slice(leading.length);
+  if(trailing&&reading.endsWith(trailing))reading=reading.slice(0,-trailing.length);
+  return `${leading}<ruby>${kanjiPart}<rt>${reading}</rt></ruby>${trailing}`;
+}
+function rubyText(text){return text.replace(rubyPattern,found=>{const word=rubyTerms.find(key=>found.startsWith(key));return rubyFor(word)})}
 const $=s=>document.querySelector(s);
 let mode='quiz',score=0,streak=0,quizRound=1,quizDeck=[],quizIndex=0,locked=false;
 let cardDeck=[],cardIndex=0,flipped=false,cardMode='all',missedCards=new Set();
 let puzzleDeck=[],puzzleIndex=0,selected=[];
 let kanjiDeck=[],kanjiIndex=0,kanjiRound=1,kanjiLocked=false;
+let activeLesson=null;
+const lessonMeta={
+  sep30:{title:'30. September · Alltag, Essen & Baden',itemStart:0,puzzleStart:0,kanjiStart:0,dailyWord:'湯舟'},
+  oct11:{title:'11. Oktober · Essen, Berlin & Uniformen',itemStart:items.findIndex(item=>item.jp==='昨日、お酒を飲みすぎました。'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='昨日'),kanjiStart:kanjiItems.findIndex(item=>item.word==='昨日'),dailyWord:'制服'}
+};
+function lessonItems(){const start=lessonMeta[activeLesson]?.itemStart??0;const end=activeLesson==='sep30'?lessonMeta.oct11.itemStart:items.length;return items.slice(start,end)}
+function lessonPuzzles(){const start=lessonMeta[activeLesson]?.puzzleStart??0;const end=activeLesson==='sep30'?lessonMeta.oct11.puzzleStart:puzzles.length;return puzzles.slice(start,end)}
+function lessonKanji(){const start=lessonMeta[activeLesson]?.kanjiStart??0;const end=activeLesson==='sep30'?lessonMeta.oct11.kanjiStart:kanjiItems.length;return kanjiItems.slice(start,end)}
+function openLesson(id,initialMode='quiz'){if(!lessonMeta[id])return;activeLesson=id;$('#lessonPicker').hidden=true;$('#lessonHeader').hidden=false;$('#stats').hidden=false;$('#game').hidden=false;$('#lessonTitle').textContent=lessonMeta[id].title;score=0;streak=0;quizRound=1;kanjiRound=1;quizDeck=[];cardDeck=[];puzzleDeck=[];kanjiDeck=[];updateStats();mode='quiz';makeQuizDeck();makeCards();makePuzzles();setMode(initialMode)}
+function showLessons(){activeLesson=null;$('#lessonPicker').hidden=false;$('#lessonHeader').hidden=true;$('#stats').hidden=true;$('#game').hidden=true}
+document.querySelectorAll('[data-lesson]').forEach(button=>button.addEventListener('click',()=>openLesson(button.dataset.lesson)));
+$('#backToLessons').addEventListener('click',showLessons);
 try{missedCards=new Set(JSON.parse(localStorage.getItem('kotoba-missed-cards')||'[]').filter(i=>Number.isInteger(i)&&i>=0&&i<items.length))}catch(_){missedCards=new Set()}
 function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
 function updateStats(){$('#score').textContent=score;$('#streak').textContent=streak}
 function setMode(next){mode=next;document.querySelectorAll('.mode[data-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));$('#quizView').hidden=mode!=='quiz';$('#cardsView').hidden=mode!=='cards';$('#puzzleView').hidden=mode!=='puzzle';$('#kanjiView').hidden=mode!=='kanji';$('#endScreen').classList.remove('show');if(mode==='quiz')renderQuiz();if(mode==='cards')renderCard();if(mode==='puzzle')renderPuzzle();if(mode==='kanji'){if(!kanjiDeck.length)startKanjiRound();else renderKanjiQuiz()}}
 document.querySelectorAll('.mode[data-mode]').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
-function makeQuizDeck(){quizDeck=shuffle(items).slice(0,8);quizIndex=0;locked=false;$('#endScreen').classList.remove('show');$('#quizView').hidden=false;renderQuiz()}
-function renderQuiz(){if(mode!=='quiz')return;if(quizIndex>=quizDeck.length){$('#quizView').hidden=true;$('#endScreen').classList.add('show');$('#endMessage').textContent='Diese Quizrunde ist geschafft — gut wiederholt!';return}locked=false;const it=quizDeck[quizIndex];$('#quizCount').textContent=`Runde ${quizRound} · Frage ${quizIndex+1}/${quizDeck.length}`;$('#quizProgress').style.width=`${quizIndex/quizDeck.length*100}%`;const options=shuffle([it,...shuffle(items.filter(x=>x!==it)).slice(0,3)]);$('#questionArea').innerHTML=`<div class="prompt-label">${it.kind} · Übersetze ins Deutsche</div><h3 class="prompt jp">${rubyText(it.jp)}</h3><div class="choices">${options.map((x,i)=>`<button class="choice" data-correct="${x===it}"><span class="translation">${String.fromCharCode(65+i)}　${x.de}</span></button>`).join('')}</div><div class="feedback" id="quizFeedback"><span></span><button id="quizNext">Weiter →</button></div>`;document.querySelectorAll('#questionArea .choice').forEach(b=>b.addEventListener('click',()=>answerQuiz(b,it)));$('#quizNext').addEventListener('click',()=>{quizIndex++;renderQuiz()})}
+function makeQuizDeck(){quizDeck=shuffle(lessonItems()).slice(0,8);quizIndex=0;locked=false;$('#endScreen').classList.remove('show');$('#quizView').hidden=false;renderQuiz()}
+function renderQuiz(){if(mode!=='quiz')return;if(quizIndex>=quizDeck.length){$('#quizView').hidden=true;$('#endScreen').classList.add('show');$('#endMessage').textContent='Diese Quizrunde ist geschafft — gut wiederholt!';return}locked=false;const it=quizDeck[quizIndex];$('#quizCount').textContent=`Runde ${quizRound} · Frage ${quizIndex+1}/${quizDeck.length}`;$('#quizProgress').style.width=`${quizIndex/quizDeck.length*100}%`;const pool=lessonItems();const options=shuffle([it,...shuffle(pool.filter(x=>x!==it)).slice(0,3)]);$('#questionArea').innerHTML=`<div class="prompt-label">${it.kind} · Übersetze ins Deutsche</div><h3 class="prompt jp">${rubyText(it.jp)}</h3><div class="choices">${options.map((x,i)=>`<button class="choice" data-correct="${x===it}"><span class="translation">${String.fromCharCode(65+i)}　${x.de}</span></button>`).join('')}</div><div class="feedback" id="quizFeedback"><span></span><button id="quizNext">Weiter →</button></div>`;document.querySelectorAll('#questionArea .choice').forEach(b=>b.addEventListener('click',()=>answerQuiz(b,it)));$('#quizNext').addEventListener('click',()=>{quizIndex++;renderQuiz()})}
 function answerQuiz(btn,it){if(locked)return;locked=true;const ok=btn.dataset.correct==='true';if(ok){score++;streak++;btn.classList.add('correct')}else{streak=0;btn.classList.add('wrong');$('#questionArea .choice[data-correct="true"]').classList.add('correct')}updateStats();document.querySelectorAll('#questionArea .choice').forEach(b=>b.disabled=true);const f=$('#quizFeedback');f.className=`feedback show ${ok?'good':'bad'}`;f.querySelector('span').innerHTML=`<strong>${ok?'Richtig!':'Noch nicht.'}</strong> ${ok?'':it.de+' · '}${rubyText(it.note)}`;$('#quizProgress').style.width=`${(quizIndex+1)/quizDeck.length*100}%`}
 $('#restartQuiz').addEventListener('click',()=>{if(mode==='kanji'){kanjiRound++;startKanjiRound()}else{quizRound++;makeQuizDeck()}});
 function saveMissedCards(){try{localStorage.setItem('kotoba-missed-cards',JSON.stringify([...missedCards]))}catch(_){}}
-function updateMissedCount(){$('#missedCount').textContent=`(${missedCards.size})`;$('#allCardsBtn').classList.toggle('active',cardMode==='all');$('#reviewCardsBtn').classList.toggle('active',cardMode==='review')}
-function chooseCardMode(next){cardMode=next;cardDeck=next==='all'?shuffle(items):shuffle([...missedCards].map(i=>items[i]));cardIndex=0;renderCard()}
-function makeCards(){cardMode='all';cardDeck=shuffle(items);cardIndex=0;flipped=false;renderCard()}
-function renderCard(){updateMissedCount();if(cardMode==='review'&&!cardDeck.length){$('#flashWrap').hidden=true;$('#reviewEmpty').hidden=false;$('#cardCount').textContent='0 offen';$('#cardProgress').style.width='100%';return}$('#flashWrap').hidden=false;$('#reviewEmpty').hidden=true;const it=cardDeck[cardIndex];flipped=false;$('#cardType').textContent=it.kind+' · Japanisch';$('#cardFront').innerHTML=rubyText(it.jp);$('#cardAnswer').hidden=true;$('#cardHint').hidden=false;$('#cardNote').hidden=true;$('#cardAnswer').textContent=it.de;$('#cardCount').textContent=`Karte ${cardIndex+1}/${cardDeck.length} · ${missedCards.size} zur Wiederholung`;$('#cardProgress').style.width=`${(cardIndex+1)/cardDeck.length*100}%`;$('#flipCard').textContent='Antwort zeigen';$('#cardHint').textContent='Tippe auf die Karte, um die Antwort zu sehen';$('#cardNote').innerHTML=rubyText(it.note||'');$('#know').disabled=true;$('#dontKnow').disabled=true}
+function activeMissedCards(){const active=new Set(lessonItems());return [...missedCards].filter(i=>active.has(items[i]))}
+function updateMissedCount(){$('#missedCount').textContent=`(${activeMissedCards().length})`;$('#allCardsBtn').classList.toggle('active',cardMode==='all');$('#reviewCardsBtn').classList.toggle('active',cardMode==='review')}
+function chooseCardMode(next){cardMode=next;cardDeck=next==='all'?shuffle(lessonItems()):shuffle(activeMissedCards().map(i=>items[i]));cardIndex=0;renderCard()}
+function makeCards(){cardMode='all';cardDeck=shuffle(lessonItems());cardIndex=0;flipped=false;renderCard()}
+function renderCard(){updateMissedCount();if(cardMode==='review'&&!cardDeck.length){$('#flashWrap').hidden=true;$('#reviewEmpty').hidden=false;$('#cardCount').textContent='0 offen';$('#cardProgress').style.width='100%';return}$('#flashWrap').hidden=false;$('#reviewEmpty').hidden=true;const it=cardDeck[cardIndex];flipped=false;$('#cardType').textContent=it.kind+' · Japanisch';$('#cardFront').innerHTML=rubyText(it.jp);$('#cardAnswer').hidden=true;$('#cardHint').hidden=false;$('#cardNote').hidden=true;$('#cardAnswer').textContent=it.de;$('#cardCount').textContent=`Karte ${cardIndex+1}/${cardDeck.length} · ${activeMissedCards().length} zur Wiederholung`;$('#cardProgress').style.width=`${(cardIndex+1)/cardDeck.length*100}%`;$('#flipCard').textContent='Antwort zeigen';$('#cardHint').textContent='Tippe auf die Karte, um die Antwort zu sehen';$('#cardNote').innerHTML=rubyText(it.note||'');$('#know').disabled=true;$('#dontKnow').disabled=true}
 function flip(){if(!cardDeck.length||cardMode==='review'&&!cardDeck[cardIndex])return;flipped=!flipped;$('#cardAnswer').hidden=!flipped;$('#cardHint').hidden=flipped;$('#cardNote').hidden=!flipped;$('#flipCard').textContent=flipped?'Antwort verbergen':'Antwort zeigen';$('#know').disabled=!flipped;$('#dontKnow').disabled=!flipped}
 function rateCard(knew){if(!flipped||!cardDeck.length)return;const it=cardDeck[cardIndex],id=items.indexOf(it);if(knew)missedCards.delete(id);else missedCards.add(id);saveMissedCards();if(cardMode==='review'){if(knew){cardDeck=cardDeck.filter(card=>card!==it);if(cardIndex>=cardDeck.length)cardIndex=0}else cardIndex=(cardIndex+1)%cardDeck.length}else cardIndex=(cardIndex+1)%cardDeck.length;renderCard()}
 $('#allCardsBtn').addEventListener('click',()=>chooseCardMode('all'));$('#reviewCardsBtn').addEventListener('click',()=>chooseCardMode('review'));
 $('#flashcard').addEventListener('click',flip);$('#flipCard').addEventListener('click',flip);$('#know').addEventListener('click',()=>rateCard(true));$('#dontKnow').addEventListener('click',()=>rateCard(false));
 $('#nextCard').addEventListener('click',()=>{if(cardDeck.length){cardIndex=(cardIndex+1)%cardDeck.length;renderCard()}});$('#prevCard').addEventListener('click',()=>{if(cardDeck.length){cardIndex=(cardIndex-1+cardDeck.length)%cardDeck.length;renderCard()}});
-function makePuzzles(){puzzleDeck=shuffle(puzzles);puzzleIndex=0;renderPuzzle()}
+function makePuzzles(){puzzleDeck=shuffle(lessonPuzzles());puzzleIndex=0;renderPuzzle()}
 function renderPuzzle(){if(!puzzleDeck.length)makePuzzles();selected=[];const p=puzzleDeck[puzzleIndex];$('#puzzleCount').textContent=`Satz ${puzzleIndex+1}/${puzzleDeck.length}`;$('#puzzleProgress').style.width=`${puzzleIndex/puzzleDeck.length*100}%`;$('#puzzleTranslation').textContent=p.de;$('#puzzleResult').textContent='';$('#puzzleResult').className='puzzle-result';$('#checkPuzzle').hidden=false;$('#nextPuzzle').hidden=true;$('#answerZone').innerHTML='';$('#answerZone').classList.add('empty');const shuffled=shuffle(p.parts.map((part,i)=>({part,i})));$('#tileBank').innerHTML=shuffled.map(t=>`<button class="tile" data-id="${t.i}">${rubyText(t.part)}</button>`).join('');document.querySelectorAll('#tileBank .tile').forEach(b=>b.addEventListener('click',()=>{const id=+b.dataset.id;if(selected.includes(id))return;selected.push(id);b.classList.add('used');drawAnswer()}))}
 function drawAnswer(){const z=$('#answerZone');z.classList.toggle('empty',!selected.length);z.innerHTML=selected.map(id=>`<button class="tile in-answer" data-id="${id}">${rubyText(puzzleDeck[puzzleIndex].parts[id])}</button>`).join('');z.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{selected=selected.filter(x=>x!==+b.dataset.id);$('#tileBank').querySelector(`[data-id="${b.dataset.id}"]`).classList.remove('used');drawAnswer()}))}
 $('#clearPuzzle').addEventListener('click',()=>{selected=[];$('#tileBank').querySelectorAll('.tile').forEach(b=>b.classList.remove('used'));drawAnswer();$('#puzzleResult').textContent=''});
 $('#checkPuzzle').addEventListener('click',()=>{const p=puzzleDeck[puzzleIndex],correct=selected.length===p.parts.length&&selected.every((id,i)=>id===i),result=$('#puzzleResult');if(correct){result.className='puzzle-result good';result.textContent='Richtig zusammengesetzt! よくできました。';$('#puzzleProgress').style.width=`${(puzzleIndex+1)/puzzleDeck.length*100}%`;$('#checkPuzzle').hidden=true;$('#nextPuzzle').hidden=false;score++;streak++;updateStats()}else{result.className='puzzle-result bad';result.textContent=selected.length<p.parts.length?'Es fehlen noch Satzteile.':'Die Reihenfolge stimmt noch nicht ganz — versuch es noch einmal.';streak=0;updateStats()}});
-$('#nextPuzzle').addEventListener('click',()=>{puzzleIndex=(puzzleIndex+1)%puzzleDeck.length;if(puzzleIndex===0)puzzleDeck=shuffle(puzzles);renderPuzzle()});
-function startKanjiRound(){kanjiDeck=shuffle(kanjiItems).slice(0,10);kanjiIndex=0;kanjiLocked=false;$('#kanjiView').hidden=false;$('#endScreen').classList.remove('show');renderKanjiQuiz()}
+$('#nextPuzzle').addEventListener('click',()=>{puzzleIndex=(puzzleIndex+1)%puzzleDeck.length;if(puzzleIndex===0)puzzleDeck=shuffle(lessonPuzzles());renderPuzzle()});
+function startKanjiRound(){kanjiDeck=shuffle(lessonKanji()).slice(0,10);kanjiIndex=0;kanjiLocked=false;$('#kanjiView').hidden=false;$('#endScreen').classList.remove('show');renderKanjiQuiz()}
 function renderKanjiQuiz(){if(mode!=='kanji')return;if(kanjiIndex>=kanjiDeck.length){$('#kanjiView').hidden=true;$('#endScreen').classList.add('show');$('#endMessage').textContent='Die Kanji-Runde ist geschafft — du hast zehn Lesungen trainiert.';return}kanjiLocked=false;const item=kanjiDeck[kanjiIndex];$('#kanjiCount').textContent=`Runde ${kanjiRound} · Frage ${kanjiIndex+1}/${kanjiDeck.length}`;$('#kanjiProgress').style.width=`${kanjiIndex/kanjiDeck.length*100}%`;const distractors=shuffle(kanjiDeck.filter(other=>other!==item&&other.reading!==item.reading)).slice(0,3);const options=shuffle([item,...distractors]);$('#kanjiQuestionArea').innerHTML=`<div class="prompt-label">Wie liest man dieses Kanji-Wort?</div><h3 class="prompt jp">${item.word}</h3><div class="choices">${options.map((option,i)=>`<button class="choice" data-correct="${option===item}"><span class="translation">${String.fromCharCode(65+i)}　<span class="jp">${option.reading}</span></span></button>`).join('')}</div><div class="feedback" id="kanjiFeedback"><span></span><button id="kanjiNext">Weiter →</button></div>`;document.querySelectorAll('#kanjiQuestionArea .choice').forEach(button=>button.addEventListener('click',()=>answerKanji(button,item)));$('#kanjiNext').addEventListener('click',()=>{kanjiIndex++;renderKanjiQuiz()})}
 function answerKanji(button,item){if(kanjiLocked)return;kanjiLocked=true;const correct=button.dataset.correct==='true';if(correct){score++;streak++;button.classList.add('correct')}else{streak=0;button.classList.add('wrong');$('#kanjiQuestionArea .choice[data-correct="true"]').classList.add('correct')}updateStats();document.querySelectorAll('#kanjiQuestionArea .choice').forEach(option=>option.disabled=true);const feedback=$('#kanjiFeedback');feedback.className=`feedback show ${correct?'good':'bad'}`;feedback.querySelector('span').innerHTML=`<strong>${correct?'Richtig!':'Die Lesung ist:'}</strong> ${rubyText(item.word)} · ${item.reading} — ${item.de}`;$('#kanjiProgress').style.width=`${(kanjiIndex+1)/kanjiDeck.length*100}%`}
-makeQuizDeck();makeCards();makePuzzles();
 </script>
 </body>
 </html>
