@@ -350,7 +350,7 @@ const samuraiWritingAliases={'1回':['一回'],'週に1度':['週に一度'],'�
 function samuraiWordForms(item){return item.jp.split(/[／/]/).map(word=>word.replace(/[（(][^）)]*[）)]/g,'').trim()).filter(Boolean)}
 function samuraiReadingFor(word){if(samuraiReadingOverrides[word])return samuraiReadingOverrides[word];if(rubyReadings[word])return rubyReadings[word];const kanji=kanjiItems.find(item=>item.word===word);if(kanji)return kanji.reading;if(!/[\u3400-\u4dbf\u4e00-\u9fff々〆ヵヶ]/.test(word))return samuraiKanaToHiragana(word);return ''}
 function samuraiReadingsFor(item){return samuraiWordForms(item).map(samuraiReadingFor).filter(Boolean)}
-function samuraiVocabulary(){return lessonItems().filter(item=>['Wort','Ausdruck'].includes(item.kind)&&samuraiReadingsFor(item).length>0)}
+function samuraiVocabulary(){const candidates=[...lessonItems().filter(item=>['Wort','Ausdruck'].includes(item.kind)),...lessonKanji().map(item=>({jp:item.word,de:item.de,kind:'Wort'}))],seenAnswers=new Set(),vocabulary=[];for(const item of candidates){if(!samuraiReadingsFor(item).length)continue;const answers=samuraiWordForms(item).concat(samuraiWritingAliases[item.jp]||[]).map(normalizeSamuraiJapanese);if(answers.some(answer=>seenAnswers.has(answer)))continue;answers.forEach(answer=>seenAnswers.add(answer));vocabulary.push(item)}return vocabulary}
 function samuraiKanaToHiragana(value){return Array.from(value).map(char=>{const code=char.charCodeAt(0);return code>=0x30a1&&code<=0x30f6?String.fromCharCode(code-0x60):char}).join('')}
 function normalizeSamuraiJapanese(value){return samuraiKanaToHiragana(String(value).normalize('NFKC').toLowerCase()).replace(/[\s。、！？?!「」『』・･／/()（）~〜～]/g,'')}
 const samuraiRomajiMap={
