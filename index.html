@@ -26,23 +26,36 @@
     @keyframes foeEnter{from{transform:translateX(-38px)}to{transform:translateX(0)}}@keyframes katanaThrust{0%,25%{transform:translateX(0)}65%,100%{transform:translateX(66px)}}@keyframes targetFall{0%,35%{transform:translate(0,0) rotate(0)}100%{transform:translate(17px,22px) rotate(72deg);opacity:.45}}@keyframes pixelImpact{0%{opacity:0;transform:scale(.2)}40%,100%{opacity:1;transform:scale(1)}}@keyframes fireworkBurst{0%,100%{opacity:0;transform:scale(.15)}18%{opacity:1;transform:scale(.72)}55%{opacity:.9;transform:scale(1.05)}82%{opacity:.2;transform:scale(1.18)}}@media(prefers-reduced-motion:reduce){.samurai-foe,.samurai-blade,.samurai-target,.samurai-impact,.pixel-burst{animation-duration:.01ms;animation-iteration-count:1}}
     @media(max-width:520px){.sentence-audio-row{flex-direction:column;gap:0}.sentence-audio-row .prompt{width:100%}}
     .samurai-heading-controls{display:flex;align-items:center;gap:12px}.samurai-sound-toggle{border:1px solid #d6ddd6;border-radius:10px;background:#fffefa;padding:8px 11px;color:var(--navy);font-size:12px;font-weight:700;white-space:nowrap}.samurai-sound-toggle:hover{border-color:var(--teal);background:#f3f8f3}.samurai-sound-toggle:focus-visible{outline:3px solid #97cbb8;outline-offset:2px}@media(max-width:520px){.samurai-heading-controls{align-items:flex-end;flex-direction:column;gap:7px}.samurai-sound-toggle{font-size:11px;padding:7px 9px}}
+    .teacher-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.teacher-card strong{font-family:'Noto Sans JP','DM Sans',sans-serif}.picker-actions{margin:-5px 0 18px}.teacher-empty{margin-top:14px}@media(max-width:700px){.teacher-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
 <main class="shell">
-  <div class="topline"><div class="brand"><div class="mark">言</div><span>KOTOBA探検</span></div><div class="today">Lokale Testversion · 30. September &amp; 11. Oktober</div></div>
+  <div class="topline"><div class="brand"><div class="mark">言</div><span>KOTOBA探検</span></div><div class="today">Deine Unterrichtsnotizen · Nach Lehrkraft sortiert</div></div>
   <section class="hero">
     <div class="hero-copy"><div class="eyebrow">Japanisch lernen · spielerisch wiederholen</div><h1>Ein paar Wörter.<br>Ein großer Sprung.</h1><p>Trainiere Vokabeln, schreibe Japanisch aus dem Gedächtnis, setze Satzteile zusammen und übe Kanji-Lesungen. Alles aus deinen Unterrichtsnotizen.</p></div>
-    <aside class="daily-card"><div class="daily-top">Wort des Tages</div><div class="daily-word jp"><ruby>制服<rt>せいふく</rt></ruby></div><div class="daily-translation">Uniform · einheitliche Kleidung</div><button onclick="openLesson('oct11','cards')">✦ Mit Karteikarten üben</button></aside>
+    <aside class="daily-card"><div class="daily-top">Wort des Tages</div><div class="daily-word jp"><ruby>制服<rt>せいふく</rt></ruby></div><div class="daily-translation">Uniform · einheitliche Kleidung</div><button onclick="selectTeacher('hitomi')">✦ Unterricht mit ひとみ先生 wählen</button></aside>
   </section>
-  <section class="lesson-picker" id="lessonPicker" aria-label="Unterrichtstag auswählen">
-    <h2>Womit möchtest du üben?</h2><p>Wähle einen Unterrichtstag. Die Übungen und Kanji passen dann nur zu dieser Stunde.</p>
-    <div class="lesson-grid">
-      <button class="lesson-card" data-lesson="sep30"><span class="lesson-date">Unterricht · 30. September</span><strong>Alltag, Essen &amp; Baden</strong><span>Spazierengehen, Haushalt, Pizza, Badekultur und Kyoto.</span></button>
-      <button class="lesson-card" data-lesson="oct11"><span class="lesson-date">Unterricht · 11. Oktober</span><strong>Essen, Berlin &amp; Uniformen</strong><span>Deutsche Küche, Festival of Lights, Arbeit und Schuluniformen.</span></button>
+  <section class="lesson-picker teacher-picker" id="teacherPicker" aria-label="Lehrkraft auswählen">
+    <h2>Bei welcher Lehrkraft möchtest du üben?</h2><p>Wähle zuerst deine Lehrkraft und danach den passenden Unterrichtstag.</p>
+    <div class="lesson-grid teacher-grid">
+      <button class="lesson-card teacher-card" data-teacher="hitomi"><span class="lesson-date" data-teacher-count></span><strong>ひとみ先生</strong><span>Alltag, Essen, Baden, Berlin und Uniformen.</span></button>
+      <button class="lesson-card teacher-card" data-teacher="ai"><span class="lesson-date" data-teacher-count></span><strong>あい先生</strong><span>Alltag, Verkehr, Wohnen und Geld.</span></button>
+      <button class="lesson-card teacher-card" data-teacher="mari"><span class="lesson-date" data-teacher-count></span><strong>まり先生</strong><span>Wörter, höfliche Bitten, Kleidung und Gewohnheiten.</span></button>
     </div>
   </section>
-  <div class="lesson-header" id="lessonHeader" hidden><div><span>Ausgewählter Unterrichtstag</span><strong id="lessonTitle"></strong></div><button class="secondary" id="backToLessons">← Alle Unterrichtstage</button></div>
+  <section class="lesson-picker" id="lessonPicker" aria-label="Unterrichtstag auswählen" hidden>
+    <h2 id="lessonPickerTitle">Unterrichtsstunden</h2><p id="lessonPickerDescription">Wähle einen Unterrichtstag. Übungen und Kanji passen nur zu dieser Stunde.</p>
+    <div class="picker-actions"><button class="secondary" id="backToTeachers">← Andere Lehrkraft</button></div>
+    <div class="lesson-grid" id="lessonGrid">
+      <button class="lesson-card" data-lesson="sep30"><span class="lesson-date">Unterricht · 30. September</span><strong>Alltag, Essen &amp; Baden</strong><span>Spazierengehen, Haushalt, Pizza, Badekultur und Kyoto.</span></button>
+      <button class="lesson-card" data-lesson="mariOct3"><span class="lesson-date">Unterricht · 3. Oktober 2026</span><strong>Wörter, Einkaufen &amp; Gewohnheiten</strong><span>Eigenschaften, höflich verhandeln, Kleidung und Beziehungen.</span></button>
+      <button class="lesson-card" data-lesson="aiOct8"><span class="lesson-date">Unterricht · 8. Oktober 2026</span><strong>Alltag, Verkehr &amp; Wohnen</strong><span>Führerschein, Wege, Wohnung, Investitionen und neue Wörter.</span></button>
+      <button class="lesson-card" data-lesson="oct11"><span class="lesson-date">Unterricht · 11. Oktober</span><strong>Essen, Berlin &amp; Uniformen</strong><span>Deutsche Küche, Festival of Lights, Arbeit und Schuluniformen.</span></button>
+    </div>
+    <div class="review-empty teacher-empty" id="noTeacherLessons" hidden><strong>Noch keine Unterrichtstage</strong>Für diese Lehrkraft sind noch keine Notizen hinterlegt.</div>
+  </section>
+  <div class="lesson-header" id="lessonHeader" hidden><div><span id="lessonTeacher">Ausgewählter Unterrichtstag</span><strong id="lessonTitle"></strong></div><button class="secondary" id="backToLessons">← Unterrichtstage</button></div>
     <div class="stats" id="stats" hidden><div class="stat"><strong id="score">0</strong> richtige Antworten</div><div class="stat"><strong id="streak">0</strong> in Folge</div><div class="stat"><strong>5</strong> Spielmodi</div></div>
 
   <section class="game" id="game" aria-label="Japanisch-Lernspiel" hidden>
@@ -172,6 +185,69 @@ const items = [
   {jp:'ランドセル', de:'Schulranzen', kind:'Wort', note:'In den Notizen steht als ungefähre Preisspanne 100 bis 1.000 Euro.'},
   {jp:'ドイツのランドセルはかわいいですが、すごく重たいので1、2年しか使いません。', de:'Deutsche Schulranzen sind niedlich, aber sehr schwer, deshalb benutze ich sie nur ein oder zwei Jahre.', kind:'Satz', note:'しか + Verneinung = nur; 重たい（おもたい）= schwer.'},
   {jp:'リーガルハイはおもしろいドラマです。', de:'„Legal High“ ist eine interessante Serie.', kind:'Satz', note:'ドラマ = Fernsehserie; おもしろい = interessant / unterhaltsam.'},
+  {jp:'方法', audioText:'ほうほう', de:'Methode; Vorgehensweise', kind:'Wort', note:'ほうほう bezeichnet eine Art oder Methode, etwas zu tun.', audioFile:'mari03-wort-01.mp3'},
+  {jp:'複雑な', audioText:'ふくざつな', de:'kompliziert; komplex', kind:'Wort', note:'複雑な beschreibt etwas, das aus vielen Teilen besteht oder nicht einfach ist.', audioFile:'mari03-wort-02.mp3'},
+  {jp:'美容師', audioText:'びようし', de:'Friseur/in; Hairstylist/in', kind:'Wort', note:'美容師 ist die Berufsbezeichnung für einen Friseur oder eine Friseurin.', audioFile:'mari03-wort-03.mp3'},
+  {jp:'量', audioText:'りょう', de:'Menge; Umfang', kind:'Wort', note:'量 gibt an, wie viel von etwas vorhanden ist.', audioFile:'mari03-wort-04.mp3'},
+  {jp:'がんばれ！キッカーズ', audioText:'がんばれ！キッカーズ', de:'„Auf geht’s, Kickers!“', kind:'Ausdruck', note:'がんばれ ist ein aufmunternder Zuruf: „Gib dein Bestes!“', audioFile:'mari03-wort-05.mp3'},
+  {jp:'大きさ', audioText:'おおきさ', de:'Größe; Ausmaß', kind:'Wort', note:'大きさ ist die Größe oder das Ausmaß von etwas.', audioFile:'mari03-wort-06.mp3'},
+  {jp:'かたい', audioText:'かたい', de:'hart; fest', kind:'Wort', note:'かたい kann je nach Gegenstand mit unterschiedlichen Kanji geschrieben werden; hier bleibt die Notizschreibweise erhalten.', audioFile:'mari03-wort-07.mp3'},
+  {jp:'当日券売り場', audioText:'とうじつけんうりば', de:'Abendkasse; Schalter für Karten am Veranstaltungstag', kind:'Wort', note:'当日券 sind Eintrittskarten, die am selben Tag verkauft werden.', audioFile:'mari03-wort-08.mp3'},
+  {jp:'ビザ', audioText:'ビザ', de:'Visum', kind:'Wort', note:'ビザ wird in Katakana geschrieben.', audioFile:'mari03-wort-09.mp3'},
+  {jp:'ルール', audioText:'ルール', de:'Regel; Vorschrift', kind:'Wort', note:'ルール ist ein Lehnwort aus dem Englischen „rule“.', audioFile:'mari03-wort-10.mp3'},
+  {jp:'もう少し安くしていただけませんか？', audioText:'もうすこしやすくしていただけませんか？', de:'Könnten Sie es bitte noch ein bisschen günstiger machen?', kind:'Satz', note:'Eine höfliche Bitte um einen etwas niedrigeren Preis.'},
+  {jp:'離れています', audioText:'はなれています', de:'entfernt sein; auseinanderliegen', kind:'Wort', note:'離れる beschreibt, dass zwei Dinge voneinander entfernt sind.', audioFile:'mari03-wort-11.mp3'},
+  {jp:'切れます', audioText:'きれます', de:'reißen; durchtrennen; ausgehen (z. B. bei einer Frist)', kind:'Wort', note:'きれます hat je nach Zusammenhang mehrere Bedeutungen; in der Notiz ist „reißen“ gemeint.', audioFile:'mari03-wort-12.mp3'},
+  {jp:'なくなります', audioText:'なくなります', de:'verschwinden; ausgehen; nicht mehr vorhanden sein', kind:'Wort', note:'Zum Beispiel: Vorräte, Zeit oder Geld könnenなくなります.', audioFile:'mari03-wort-13.mp3'},
+  {jp:'危篤', audioText:'きとく', de:'kritisch krank; in Lebensgefahr', kind:'Wort', note:'危篤 beschreibt einen lebensbedrohlich kritischen Gesundheitszustand.', audioFile:'mari03-wort-14.mp3'},
+  {jp:'長くないです。', audioText:'ながくないです。', de:'Es ist nicht lang; es dauert nicht lange.', kind:'Ausdruck', note:'Höfliche Verneinung von 長い（ながい）= lang.', audioFile:'mari03-wort-15.mp3'},
+  {jp:'似合います', audioText:'にあいます', de:'jemandem stehen; gut passen', kind:'Wort', note:'Kleidung oder eine Farbe kann einer Person gut stehen.', audioFile:'mari03-wort-16.mp3'},
+  {jp:'似合いそうです', audioText:'にあいそうです', de:'scheint jemandem zu stehen; sieht passend aus', kind:'Ausdruck', note:'～そうです drückt hier einen Eindruck oder eine Vermutung aus.', audioFile:'mari03-wort-17.mp3'},
+  {jp:'この服はあなたに似合いそうです。', audioText:'このふくはあなたににあいそうです。', de:'Diese Kleidung scheint dir gut zu stehen.', kind:'Satz', note:'服（ふく）= Kleidung; 似合いそう = scheint gut zu stehen.'},
+  {jp:'再来週', audioText:'さらいしゅう', de:'übernächste Woche', kind:'Wort', note:'再来週 ist die Woche nach der nächsten Woche.', audioFile:'mari03-wort-18.mp3'},
+  {jp:'プロポーズする', audioText:'ぷろぽーずする', de:'einen Heiratsantrag machen', kind:'Wort', note:'プロポーズする verwendet man für einen Heiratsantrag.', audioFile:'mari03-wort-19.mp3'},
+  {jp:'婚約する', audioText:'こんやくする', de:'sich verloben', kind:'Wort', note:'婚約 ist die Verlobung; 婚約する heißt „sich verloben“.', audioFile:'mari03-wort-20.mp3'},
+  {jp:'慣れます', audioText:'なれます', de:'sich an etwas gewöhnen', kind:'Wort', note:'慣れる wird oft mit に verwendet: 新しい仕事に慣れます = sich an die neue Arbeit gewöhnen.', audioFile:'mari03-wort-21.mp3'},
+  {jp:'安全', audioText:'あんぜん', de:'Sicherheit; sicher', kind:'Wort', note:'安全 kann je nach Satz „Sicherheit“ oder „sicher“ bedeuten.', audioFile:'mari03-wort-22.mp3'},
+  {jp:'職場', audioText:'しょくば', de:'Arbeitsplatz; Arbeitsstätte', kind:'Wort', note:'職場 ist der Ort, an dem man arbeitet.', audioFile:'mari03-wort-23.mp3'},
+  {jp:'免許証', audioText:'めんきょしょう', de:'Führerschein; Fahrerlaubnis', kind:'Wort', note:'免許証 ist der Ausweis, der eine Fahrerlaubnis nachweist.', audioFile:'ai10-wort-01.mp3'},
+  {jp:'住所', audioText:'じゅうしょ', de:'Adresse; Wohnanschrift', kind:'Wort', note:'住所 ist der Ort, an dem jemand wohnt.', audioFile:'ai10-wort-02.mp3'},
+  {jp:'変更する', audioText:'へんこうする', de:'ändern; eine Änderung vornehmen', kind:'Wort', note:'住所を変更する = die Adresse ändern.', audioFile:'ai10-wort-03.mp3'},
+  {jp:'会社に行かなければなりません', audioText:'かいしゃにいかなければなりません', de:'Ich muss zur Firma / zur Arbeit gehen.', kind:'Satz', note:'～なければなりません drückt eine Notwendigkeit oder Pflicht aus.'},
+  {jp:'探していたレコードが全然ありませんでした', audioText:'さがしていたレコードがぜんぜんありませんでした', de:'Die Schallplatte, nach der ich gesucht hatte, gab es überhaupt nicht.', kind:'Satz', note:'全然 steht hier mit der Verneinung ありませんでした und bedeutet „überhaupt nicht“.'},
+  {jp:'自然', audioText:'しぜん', de:'Natur; natürlich', kind:'Wort', note:'自然 bedeutet „Natur“ oder – je nach Satz – „natürlich“.', audioFile:'ai10-wort-04.mp3'},
+  {jp:'自然に', audioText:'しぜんに', de:'natürlich; von selbst; automatisch', kind:'Ausdruck', note:'自然に beschreibt, dass etwas ohne besondere Absicht oder Zutun geschieht.', audioFile:'ai10-wort-05.mp3'},
+  {jp:'ぬぎます', audioText:'ぬぎます', de:'ausziehen; ablegen (Kleidung oder Schuhe)', kind:'Wort', note:'Die Notiz schreibt das Wort in Hiragana; mit Kanji: 脱ぎます.', audioFile:'ai10-wort-06.mp3'},
+  {jp:'片側', audioText:'かたがわ', de:'eine Seite; eine Straßenseite', kind:'Wort', note:'片側 bezeichnet eine von zwei Seiten.', audioFile:'ai10-wort-07.mp3'},
+  {jp:'止まる', audioText:'とまる', de:'anhalten; stehen bleiben', kind:'Wort', note:'止まる beschreibt, dass etwas zum Stillstand kommt.', audioFile:'ai10-wort-08.mp3'},
+  {jp:'起きる', audioText:'おきる', de:'aufwachen; aufstehen; geschehen', kind:'Wort', note:'起きる kann „aufwachen/aufstehen“ oder „geschehen“ bedeuten.', audioFile:'ai10-wort-09.mp3'},
+  {jp:'乗ります', audioText:'のります', de:'einsteigen; fahren (in/mit einem Verkehrsmittel)', kind:'Wort', note:'乗ります verwendet man zum Beispiel für Bus und Zug.', audioFile:'ai10-wort-10.mp3'},
+  {jp:'降ります', audioText:'おります', de:'aussteigen; verlassen (Bus oder Zug)', kind:'Wort', note:'Bei Verkehrsmitteln heißt 降ります „aussteigen“; die Lesung hier ist おります.', audioFile:'ai10-wort-11.mp3'},
+  {jp:'バスを降ります', audioText:'バスをおります', de:'aus dem Bus aussteigen', kind:'Satz', note:'Bei Bus und Zug steht das Verkehrsmittel mit を.'},
+  {jp:'電車を降ります', audioText:'でんしゃをおります', de:'aus dem Zug aussteigen', kind:'Satz', note:'電車（でんしゃ）= Zug; を降ります = aussteigen.'},
+  {jp:'観覧車', audioText:'かんらんしゃ', de:'Riesenrad', kind:'Wort', note:'観覧車 ist das Riesenrad auf einem Jahrmarkt oder in einem Freizeitpark.', audioFile:'ai10-wort-12.mp3'},
+  {jp:'しばらく乗っていません', audioText:'しばらくのっていません', de:'Ich bin seit einer Weile nicht mehr damit gefahren.', kind:'Satz', note:'しばらく = eine Weile; ～ていません beschreibt, dass etwas seit einiger Zeit nicht geschieht.'},
+  {jp:'しばらく', audioText:'しばらく', de:'eine Weile; längere Zeit', kind:'Ausdruck', note:'Der genaue Zeitraum hängt vom Zusammenhang ab.', audioFile:'ai10-wort-13.mp3'},
+  {jp:'整理する', audioText:'せいりする', de:'ordnen; sortieren; aufräumen', kind:'Wort', note:'整理する bedeutet, Dinge geordnet zusammenzustellen.', audioFile:'ai10-wort-14.mp3'},
+  {jp:'昔からの友達', audioText:'むかしからのともだち', de:'ein Freund / eine Freundin von früher; langjähriger Freund', kind:'Ausdruck', note:'昔から = schon seit früher; 友達 = Freund oder Freundin.', audioFile:'ai10-wort-15.mp3'},
+  {jp:'半地下の部屋', audioText:'はんちかのへや', de:'halb unterirdisches Zimmer; Souterrainwohnung', kind:'Ausdruck', note:'半地下の部屋 liegt teilweise unter dem Straßenniveau.', audioFile:'ai10-wort-16.mp3'},
+  {jp:'1階の部屋はリノベーションしなければいけません', audioText:'いっかいのへやはリノベーションしなければいけません', de:'Das Zimmer im Erdgeschoss muss renoviert werden.', kind:'Satz', note:'～しなければいけません bedeutet „muss … tun“; 1階 ist in Japan meist das Erdgeschoss.'},
+  {jp:'2階もリノベーションして、貸します', audioText:'にかいもリノベーションして、かします', de:'Auch die Wohnung im zweiten Stock wird renoviert und vermietet.', kind:'Satz', note:'貸します（かします）= vermieten / verleihen; 2階 = erster Stock nach deutscher Zählweise.'},
+  {jp:'600000ユーロ', audioText:'ろくじゅうまんユーロ', de:'600.000 Euro', kind:'Wort', note:'六十万（ろくじゅうまん）= sechshunderttausend.', audioFile:'ai10-wort-17.mp3'},
+  {jp:'1億円', audioText:'いちおくえん', de:'100 Millionen Yen', kind:'Wort', note:'1億 = 100.000.000; 円（えん）= Yen.', audioFile:'ai10-wort-18.mp3'},
+  {jp:'ちょっとうらやましい', audioText:'ちょっとうらやましい', de:'ein bisschen beneidenswert; ich bin ein wenig neidisch', kind:'Ausdruck', note:'うらやましい drückt Neid oder Bewunderung aus.', audioFile:'ai10-wort-19.mp3'},
+  {jp:'投資', audioText:'とうし', de:'Investition; investieren', kind:'Wort', note:'投資する = investieren.', audioFile:'ai10-wort-20.mp3'},
+  {jp:'木造', audioText:'もくぞう', de:'Holzbau; aus Holz gebaut', kind:'Wort', note:'木造の家 = ein Holzhaus.', audioFile:'ai10-wort-21.mp3'},
+  {jp:'マイノリティ', audioText:'マイノリティ', de:'Minderheit; Minorität', kind:'Wort', note:'マイノリティ ist ein Lehnwort für eine gesellschaftliche Minderheit.', audioFile:'ai10-wort-22.mp3'},
+  {jp:'ちょっといいですか？', audioText:'ちょっといいですか？', de:'Hätten Sie kurz Zeit?; Darf ich kurz etwas fragen?', kind:'Redewendung', note:'Eine höfliche Wendung, um die Aufmerksamkeit einer Person zu bekommen.'},
+  {jp:'すみません', audioText:'すみません', de:'Entschuldigung; Verzeihung', kind:'Redewendung', note:'Je nach Situation auch „Danke, dass Sie sich die Mühe machen“.', audioFile:'ai10-wort-23.mp3'},
+  {jp:'車が来ない', audioText:'くるまがこない', de:'Es kommt kein Auto.', kind:'Satz', note:'来ない（こない）ist die Verneinung von 来る（くる）.'},
+  {jp:'以上', audioText:'いじょう', de:'mehr als; mindestens; über', kind:'Wort', note:'Mit Zahlen bedeutet 以上 „… und mehr“ oder „mindestens …“.', audioFile:'ai10-wort-24.mp3'},
+  {jp:'ゴミ箱に捨てます', audioText:'ごみばこにすてます', de:'Ich werfe es in den Mülleimer.', kind:'Satz', note:'ゴミ箱（ごみばこ）= Mülleimer; 捨てます（すてます）= wegwerfen.'},
+  {jp:'送る', audioText:'おくる', de:'senden; schicken', kind:'Wort', note:'送る kann Dinge, Nachrichten oder Personen schicken/bringen bedeuten.', audioFile:'ai10-wort-25.mp3'},
+  {jp:'信じる', audioText:'しんじる', de:'glauben; vertrauen', kind:'Wort', note:'人を信じる = einer Person vertrauen.', audioFile:'ai10-wort-26.mp3'},
+  {jp:'皿', audioText:'さら', de:'Teller; flacher Teller', kind:'Wort', note:'皿 bezeichnet einen Teller oder eine flache Schale.', audioFile:'ai10-wort-27.mp3'},
+  {jp:'まとめる', audioText:'まとめる', de:'zusammenfassen; zusammenstellen; bündeln', kind:'Wort', note:'メモをまとめる = Notizen zusammenfassen.', audioFile:'ai10-wort-28.mp3'},
 ];
 const puzzles = [
  {de:'Danach bin ich in der Stadt spazieren gegangen.',parts:['そのあとで','まちで','散歩しました。']},
@@ -191,6 +267,17 @@ const puzzles = [
  {de:'In Japan ist das Erdbebenrisiko hoch.',parts:['日本は','地震の危険性が','高いです。']},
  {de:'Ich finde sie nicht notwendig, aber praktisch.',parts:['必要じゃないけど','便利だと','思います。']},
  {de:'Das findet jedes Jahr um diese Zeit in Berlin statt.',parts:['毎年','この時期に','ベルリンで','やっています。']},
+ {de:'Könnten Sie es bitte noch ein bisschen günstiger machen?',parts:['もう少し','安くして','いただけませんか？']},
+ {de:'Diese Kleidung scheint dir gut zu stehen.',parts:['この服は','あなたに','似合いそうです。']},
+ {de:'Ich muss zur Arbeit gehen.',parts:['会社に','行かなければ','なりません。']},
+ {de:'Die Schallplatte, nach der ich gesucht hatte, gab es überhaupt nicht.',parts:['探していた','レコードが','全然','ありませんでした。']},
+ {de:'Aus dem Bus aussteigen.',parts:['バスを','降ります。']},
+ {de:'Ich bin seit einer Weile nicht mehr damit gefahren.',parts:['しばらく','乗って','いません。']},
+ {de:'Das Zimmer im Erdgeschoss muss renoviert werden.',parts:['1階の部屋は','リノベーション','しなければ','いけません。']},
+ {de:'Auch die Wohnung im zweiten Stock wird renoviert und vermietet.',parts:['2階も','リノベーションして、','貸します。']},
+ {de:'Hätten Sie kurz Zeit?',parts:['ちょっと','いいですか？']},
+ {de:'Es kommt kein Auto.',parts:['車が','来ない。']},
+ {de:'Ich werfe es in den Mülleimer.',parts:['ゴミ箱に','捨てます。']},
 ];
 const kanjiItems = [
   {word:'散歩',reading:'さんぽ',de:'Spaziergang'}, {word:'外',reading:'そと',de:'draußen'},
@@ -236,7 +323,35 @@ const kanjiItems = [
   {word:'便利',reading:'べんり',de:'praktisch; bequem'}, {word:'お金持ち',reading:'おかねもち',de:'wohlhabend'},
   {word:'ランドセル',reading:'らんどせる',de:'Schulranzen'}, {word:'重たい',reading:'おもたい',de:'schwer'},
   {word:'使う',reading:'つかう',de:'benutzen'}, {word:'年',reading:'ねん',de:'Jahr'},
-  {word:'性',reading:'せい',de:'Eigenschaft (als Endung)'}
+  {word:'性',reading:'せい',de:'Eigenschaft (als Endung)'},
+  {word:'方法',reading:'ほうほう',de:'Methode; Vorgehensweise'}, {word:'複雑',reading:'ふくざつ',de:'kompliziert; komplex'},
+  {word:'美容師',reading:'びようし',de:'Friseur/in'}, {word:'量',reading:'りょう',de:'Menge; Umfang'},
+  {word:'大きさ',reading:'おおきさ',de:'Größe; Ausmaß'}, {word:'硬い',reading:'かたい',de:'hart; fest'},
+  {word:'当日券売り場',reading:'とうじつけんうりば',de:'Abendkasse'}, {word:'安く',reading:'やすく',de:'günstiger'},
+  {word:'離れています',reading:'はなれています',de:'entfernt sein'}, {word:'切れます',reading:'きれます',de:'reißen; ausgehen'},
+  {word:'危篤',reading:'きとく',de:'kritisch krank'}, {word:'長くないです',reading:'ながくないです',de:'nicht lang; nicht lange'},
+  {word:'似合います',reading:'にあいます',de:'jemandem stehen'}, {word:'似合いそうです',reading:'にあいそうです',de:'scheint gut zu stehen'},
+  {word:'服',reading:'ふく',de:'Kleidung'}, {word:'再来週',reading:'さらいしゅう',de:'übernächste Woche'},
+  {word:'婚約',reading:'こんやく',de:'Verlobung'}, {word:'慣れます',reading:'なれます',de:'sich gewöhnen'},
+  {word:'安全',reading:'あんぜん',de:'Sicherheit; sicher'}, {word:'職場',reading:'しょくば',de:'Arbeitsplatz'},
+  {word:'免許証',reading:'めんきょしょう',de:'Führerschein'}, {word:'住所',reading:'じゅうしょ',de:'Adresse'},
+  {word:'変更',reading:'へんこう',de:'Änderung'}, {word:'会社',reading:'かいしゃ',de:'Firma'},
+  {word:'行く',reading:'いく',de:'gehen'}, {word:'探す',reading:'さがす',de:'suchen'},
+  {word:'全然',reading:'ぜんぜん',de:'überhaupt nicht'}, {word:'自然',reading:'しぜん',de:'Natur; natürlich'},
+  {word:'脱ぐ',reading:'ぬぐ',de:'ausziehen'}, {word:'片側',reading:'かたがわ',de:'eine Seite'},
+  {word:'止まる',reading:'とまる',de:'anhalten'}, {word:'起きる',reading:'おきる',de:'aufstehen'},
+  {word:'乗る',reading:'のる',de:'einsteigen; fahren'}, {word:'降りる',reading:'おりる',de:'aussteigen'},
+  {word:'電車',reading:'でんしゃ',de:'Zug'}, {word:'観覧車',reading:'かんらんしゃ',de:'Riesenrad'},
+  {word:'長い',reading:'ながい',de:'lang'}, {word:'整理',reading:'せいり',de:'Ordnung; sortieren'},
+  {word:'昔',reading:'むかし',de:'früher; alte Zeiten'}, {word:'友達',reading:'ともだち',de:'Freund; Freundin'},
+  {word:'半地下',reading:'はんちか',de:'Halbkeller; Souterrain'}, {word:'部屋',reading:'へや',de:'Zimmer'},
+  {word:'一階',reading:'いっかい',de:'Erdgeschoss'}, {word:'二階',reading:'にかい',de:'zweiter Stock; 1. OG'},
+  {word:'貸す',reading:'かす',de:'vermieten; verleihen'}, {word:'億円',reading:'おくえん',de:'100 Millionen Yen'},
+  {word:'羨ましい',reading:'うらやましい',de:'beneidenswert'}, {word:'投資',reading:'とうし',de:'Investition'},
+  {word:'木造',reading:'もくぞう',de:'Holzbau'}, {word:'車',reading:'くるま',de:'Auto'},
+  {word:'以上',reading:'いじょう',de:'mehr als; mindestens'}, {word:'ゴミ箱',reading:'ごみばこ',de:'Mülleimer'},
+  {word:'捨てる',reading:'すてる',de:'wegwerfen'}, {word:'送る',reading:'おくる',de:'senden'},
+  {word:'信じる',reading:'しんじる',de:'glauben; vertrauen'}, {word:'皿',reading:'さら',de:'Teller'}
 ];
 const rubyReadings = {
   '買いました':'かいました', '散歩':'さんぽ', '外':'そと', '家':'いえ', '屋さん':'やさん', '屋':'や',
@@ -262,7 +377,26 @@ const rubyReadings = {
   '危ない':'あぶない', '仕事':'しごと', '特別':'とくべつ', '危険性':'きけんせい', '危険':'きけん', '多様性':'たようせい', '多様':'たよう', '地震':'じしん',
   '学校':'がっこう', '便利':'べんり', '可能':'かのう', '思います':'おもいます', '思う':'おもう', 'お金持ち':'おかねもち',
   '見えない':'みえない', 'ランドセル':'らんどせる', '重たい':'おもたい', '使いません':'つかいません',
-  '使う':'つかう', '年':'ねん', '性':'せい'
+  '使う':'つかう', '年':'ねん', '性':'せい',
+  '方法':'ほうほう', '複雑':'ふくざつ', '複雑な':'ふくざつな', '美容師':'びようし', '量':'りょう',
+  '大きさ':'おおきさ', '当日券売り場':'とうじつけんうりば', '安く':'やすく', '離れています':'はなれています',
+  '切れます':'きれます', '危篤':'きとく', '長くないです':'ながくないです', '似合います':'にあいます',
+  '似合いそうです':'にあいそうです', '服':'ふく', '再来週':'さらいしゅう', '婚約':'こんやく',
+  '婚約する':'こんやくする', '慣れます':'なれます', '職場':'しょくば',
+  '免許証':'めんきょしょう', '住所':'じゅうしょ', '変更':'へんこう', '変更する':'へんこうする', '行く':'いく',
+  '脱ぐ':'ぬぐ',
+  '1階':'いっかい', '2階':'にかい', '1億円':'いちおくえん',
+  '会社':'かいしゃ', '会社に行かなければなりません':'かいしゃにいかなければなりません',
+  '探していた':'さがしていた', '探す':'さがす', '全然':'ぜんぜん', '自然':'しぜん', '自然に':'しぜんに',
+  '片側':'かたがわ', '止まる':'とまる', '起きる':'おきる', '乗る':'のる', '乗ります':'のります',
+  '降りる':'おりる', '降ります':'おります', '電車':'でんしゃ', '観覧車':'かんらんしゃ',
+  '乗って':'のって', '乗っていません':'のっていません', 'しばらく乗っていません':'しばらくのっていません',
+  'しばらく':'しばらく', '長い':'ながい', '整理する':'せいりする', '昔':'むかし',
+  '昔からの友達':'むかしからのともだち', '友達':'ともだち', '半地下':'はんちか',
+  '半地下の部屋':'はんちかのへや', '二階':'にかい', '貸します':'かします', '貸す':'かす',
+  '億円':'おくえん', '羨ましい':'うらやましい', '投資':'とうし', '木造':'もくぞう',
+  '来ない':'こない', '以上':'いじょう', 'ゴミ箱':'ごみばこ', '捨てます':'すてます',
+  '捨てる':'すてる', '送る':'おくる', '信じる':'しんじる', '皿':'さら'
 };
 const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const rubyTerms = Object.keys(rubyReadings).sort((a,b)=>b.length-a.length);
@@ -272,7 +406,16 @@ const rubyOverrides={
   '夜8時':'<ruby>夜<rt>よる</rt></ruby>8<ruby>時<rt>じ</rt></ruby>', '12時':'12<ruby>時<rt>じ</rt></ruby>',
   '8時':'8<ruby>時<rt>じ</rt></ruby>', '8杯':'8<ruby>杯<rt>はい</rt></ruby>', '1度':'1<ruby>度<rt>ど</rt></ruby>',
   '1回':'1<ruby>回<rt>かい</rt></ruby>', '洗い方':'<ruby>洗<rt>あら</rt></ruby>い<ruby>方<rt>かた</rt></ruby>',
-  'テレビ塔':'テレビ<ruby>塔<rt>とう</rt></ruby>'
+  'テレビ塔':'テレビ<ruby>塔<rt>とう</rt></ruby>', '会社に行かなければなりません':'<ruby>会社<rt>かいしゃ</rt></ruby>に<ruby>行<rt>い</rt></ruby>かなければなりません',
+  '探していた':'<ruby>探<rt>さが</rt></ruby>していた', '乗ります':'<ruby>乗<rt>の</rt></ruby>ります',
+  '降ります':'<ruby>降<rt>お</rt></ruby>ります', '止まる':'<ruby>止<rt>と</rt></ruby>まる',
+  '起きる':'<ruby>起<rt>お</rt></ruby>きる', '乗っていません':'<ruby>乗<rt>の</rt></ruby>っていません',
+  'しばらく乗っていません':'しばらく<ruby>乗<rt>の</rt></ruby>っていません',
+  '昔からの友達':'<ruby>昔<rt>むかし</rt></ruby>からの<ruby>友達<rt>ともだち</rt></ruby>',
+  '半地下の部屋':'<ruby>半地下<rt>はんちか</rt></ruby>の<ruby>部屋<rt>へや</rt></ruby>',
+  '貸します':'<ruby>貸<rt>か</rt></ruby>します', '1億円':'1<ruby>億<rt>おく</rt></ruby><ruby>円<rt>えん</rt></ruby>',
+  '1階':'1<ruby>階<rt>かい</rt></ruby>', '2階':'2<ruby>階<rt>かい</rt></ruby>',
+  '信じる':'<ruby>信<rt>しん</rt></ruby>じる', '捨てます':'<ruby>捨<rt>す</rt></ruby>てます'
 };
 function rubyFor(word){
   if(rubyOverrides[word])return rubyOverrides[word];
@@ -295,18 +438,27 @@ let puzzleDeck=[],puzzleIndex=0,selected=[];
 let kanjiDeck=[],kanjiIndex=0,kanjiRound=1,kanjiLocked=false;
 let samuraiDeck=[],samuraiCurrent=null,samuraiLast=null,samuraiScore=0,samuraiLives=3,samuraiAttempts=0,samuraiLocked=false;
 let samuraiAudioContext=null,samuraiAudioEnabled=false,samuraiMusicTimer=null,samuraiMusicStep=0;
-let activeLesson=null;
+let activeLesson=null,selectedTeacher=null;
+const teacherMeta={hitomi:{name:'ひとみ先生'},ai:{name:'あい先生'},mari:{name:'まり先生'}};
 const lessonMeta={
-  sep30:{title:'30. September · Alltag, Essen & Baden',itemStart:0,puzzleStart:0,kanjiStart:0,dailyWord:'湯舟'},
-  oct11:{title:'11. Oktober · Essen, Berlin & Uniformen',itemStart:items.findIndex(item=>item.jp==='昨日、お酒を飲みすぎました。'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='昨日'),kanjiStart:kanjiItems.findIndex(item=>item.word==='昨日'),dailyWord:'制服'}
+  sep30:{teacher:'hitomi',title:'30. September · Alltag, Essen & Baden',itemStart:0,puzzleStart:0,kanjiStart:0,dailyWord:'湯舟'},
+  oct11:{teacher:'hitomi',title:'11. Oktober · Essen, Berlin & Uniformen',itemStart:items.findIndex(item=>item.jp==='昨日、お酒を飲みすぎました。'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='昨日'),kanjiStart:kanjiItems.findIndex(item=>item.word==='昨日'),dailyWord:'制服'},
+  mariOct3:{teacher:'mari',title:'3. Oktober 2026 · Wörter, Einkaufen & Gewohnheiten',itemStart:items.findIndex(item=>item.jp==='方法'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='もう少し'),kanjiStart:kanjiItems.findIndex(item=>item.word==='方法'),dailyWord:'美容師'},
+  aiOct8:{teacher:'ai',title:'8. Oktober 2026 · Alltag, Verkehr & Wohnen',itemStart:items.findIndex(item=>item.jp==='免許証'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='会社に'),kanjiStart:kanjiItems.findIndex(item=>item.word==='免許証'),dailyWord:'観覧車',audioReady:true}
 };
-function lessonItems(){const start=lessonMeta[activeLesson]?.itemStart??0;const end=activeLesson==='sep30'?lessonMeta.oct11.itemStart:items.length;return items.slice(start,end)}
-function lessonPuzzles(){const start=lessonMeta[activeLesson]?.puzzleStart??0;const end=activeLesson==='sep30'?lessonMeta.oct11.puzzleStart:puzzles.length;return puzzles.slice(start,end)}
-function lessonKanji(){const start=lessonMeta[activeLesson]?.kanjiStart??0;const end=activeLesson==='sep30'?lessonMeta.oct11.kanjiStart:kanjiItems.length;return kanjiItems.slice(start,end)}
-function openLesson(id,initialMode='quiz'){if(!lessonMeta[id])return;activeLesson=id;$('#lessonPicker').hidden=true;$('#lessonHeader').hidden=false;$('#stats').hidden=false;$('#game').hidden=false;$('#lessonTitle').textContent=lessonMeta[id].title;score=0;streak=0;quizRound=1;kanjiRound=1;quizDeck=[];cardDeck=[];puzzleDeck=[];kanjiDeck=[];updateStats();mode='quiz';makeQuizDeck();makeCards();makePuzzles();setMode(initialMode)}
-function showLessons(){activeLesson=null;$('#lessonPicker').hidden=false;$('#lessonHeader').hidden=true;$('#stats').hidden=true;$('#game').hidden=true}
+document.querySelectorAll('[data-teacher-count]').forEach(label=>{const teacher=label.closest('[data-teacher]').dataset.teacher;const count=Object.values(lessonMeta).filter(lesson=>lesson.teacher===teacher).length;label.textContent=count?`${count} Unterrichtstage`:'Noch keine Unterrichtstage'});
+function lessonRange(list,key){const lessons=Object.values(lessonMeta),current=lessonMeta[activeLesson],index=lessons.indexOf(current),start=current?.[key]??0,end=lessons[index+1]?.[key]??list.length;return list.slice(start,end)}
+function lessonItems(){return lessonRange(items,'itemStart')}
+function lessonPuzzles(){return lessonRange(puzzles,'puzzleStart')}
+function lessonKanji(){return lessonRange(kanjiItems,'kanjiStart')}
+function selectTeacher(id){if(!teacherMeta[id])return;selectedTeacher=id;activeLesson=null;$('#teacherPicker').hidden=true;$('#lessonPicker').hidden=false;$('#lessonHeader').hidden=true;$('#stats').hidden=true;$('#game').hidden=true;$('#lessonPickerTitle').textContent=`Unterrichtsstunden · ${teacherMeta[id].name}`;$('#lessonPickerDescription').textContent='Wähle den Unterrichtstag, den du gezielt üben möchtest.';const lessons=Object.values(lessonMeta).filter(lesson=>lesson.teacher===id);document.querySelectorAll('[data-lesson]').forEach(button=>button.hidden=lessonMeta[button.dataset.lesson].teacher!==id);$('#lessonGrid').hidden=lessons.length===0;$('#noTeacherLessons').hidden=lessons.length>0;if(!lessons.length)$('#noTeacherLessons').innerHTML=`<strong>Noch keine Unterrichtstage</strong>Für ${teacherMeta[id].name} sind noch keine Notizen hinterlegt. Sobald du Material schickst, erscheint es hier.`}
+function showTeacherPicker(){activeLesson=null;selectedTeacher=null;$('#teacherPicker').hidden=false;$('#lessonPicker').hidden=true;$('#lessonHeader').hidden=true;$('#stats').hidden=true;$('#game').hidden=true}
+function openLesson(id,initialMode='quiz'){if(!lessonMeta[id]||lessonMeta[id].teacher!==selectedTeacher)return;activeLesson=id;$('#teacherPicker').hidden=true;$('#lessonPicker').hidden=true;$('#lessonHeader').hidden=false;$('#stats').hidden=false;$('#game').hidden=false;$('#lessonTeacher').textContent=`Unterricht bei ${teacherMeta[selectedTeacher].name}`;$('#lessonTitle').textContent=lessonMeta[id].title;score=0;streak=0;quizRound=1;kanjiRound=1;quizDeck=[];cardDeck=[];puzzleDeck=[];kanjiDeck=[];updateStats();mode='quiz';makeQuizDeck();makeCards();makePuzzles();setMode(initialMode)}
+function showLessons(){if(!selectedTeacher){showTeacherPicker();return}selectTeacher(selectedTeacher)}
+document.querySelectorAll('[data-teacher]').forEach(button=>button.addEventListener('click',()=>selectTeacher(button.dataset.teacher)));
 document.querySelectorAll('[data-lesson]').forEach(button=>button.addEventListener('click',()=>openLesson(button.dataset.lesson)));
 $('#backToLessons').addEventListener('click',showLessons);
+$('#backToTeachers').addEventListener('click',showTeacherPicker);
 try{missedCards=new Set(JSON.parse(localStorage.getItem('kotoba-missed-cards')||'[]').filter(i=>Number.isInteger(i)&&i>=0&&i<items.length))}catch(_){missedCards=new Set()}
 function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
 function updateStats(){$('#score').textContent=score;$('#streak').textContent=streak}
@@ -370,7 +522,7 @@ $('#samuraiForm').addEventListener('submit',submitSamuraiAnswer);
 $('#samuraiNext').addEventListener('click',drawSamuraiQuestion);
 $('#samuraiRestart').addEventListener('click',startSamuraiRound);
 const audioSentenceItems=items.filter(item=>['Satz','Redewendung','Merksatz'].includes(item.kind));
-function audioPathFor(item){const index=audioSentenceItems.indexOf(item);return index<0?'':'audio-test/satz-'+('0'+(index+1)).slice(-2)+'.mp3'}
+function audioPathFor(item){if(lessonMeta[activeLesson]?.audioReady===false)return '';if(item?.audioFile)return 'audio-test/'+item.audioFile;const index=audioSentenceItems.indexOf(item);return index<0?'':'audio-test/satz-'+('0'+(index+1)).slice(-2)+'.mp3'}
 function normalizeJapanese(text){return text.replace(/[、。！？?!「」『』\s]/g,'')}
 function findAudioSentence(text){const normalized=normalizeJapanese(text);return audioSentenceItems.find(item=>normalizeJapanese(item.jp)===normalized)||null}
 function makeAudioButton(item){const path=audioPathFor(item);if(!path)return null;const button=document.createElement('button');button.type='button';button.className='audio-button lesson-audio-control';button.dataset.audioSrc=path;button.textContent='🔊 Anhören';button.setAttribute('aria-label','Japanischen Text anhören');return button}
