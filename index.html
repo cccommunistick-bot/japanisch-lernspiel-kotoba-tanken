@@ -34,7 +34,7 @@
   <div class="topline"><div class="brand"><div class="mark">言</div><span>KOTOBA探検</span></div><div class="today">Deine Unterrichtsnotizen · Nach Lehrkraft sortiert</div></div>
   <section class="hero">
     <div class="hero-copy"><div class="eyebrow">Japanisch lernen · spielerisch wiederholen</div><h1>Ein paar Wörter.<br>Ein großer Sprung.</h1><p>Trainiere Vokabeln, schreibe Japanisch aus dem Gedächtnis, setze Satzteile zusammen und übe Kanji-Lesungen. Alles aus deinen Unterrichtsnotizen.</p></div>
-    <aside class="daily-card"><div class="daily-top">Wort des Tages</div><div class="daily-word jp"><ruby>制服<rt>せいふく</rt></ruby></div><div class="daily-translation">Uniform · einheitliche Kleidung</div><button onclick="selectTeacher('hitomi')">✦ Unterricht mit ひとみ先生 wählen</button></aside>
+    <aside class="daily-card"><div class="daily-top">Wort des Tages</div><div class="daily-word jp" id="dailyWord"></div><div class="daily-translation" id="dailyTranslation"></div><button onclick="openDailyWordLesson()">✦ Wort in Karteikarten üben</button></aside>
   </section>
   <section class="lesson-picker teacher-picker" id="teacherPicker" aria-label="Lehrkraft auswählen">
     <h2>Bei welcher Lehrkraft möchtest du üben?</h2><p>Wähle zuerst deine Lehrkraft und danach den passenden Unterrichtstag.</p>
@@ -441,10 +441,10 @@ let samuraiAudioContext=null,samuraiAudioEnabled=false,samuraiMusicTimer=null,sa
 let activeLesson=null,selectedTeacher=null;
 const teacherMeta={hitomi:{name:'ひとみ先生'},ai:{name:'あい先生'},mari:{name:'まり先生'}};
 const lessonMeta={
-  sep30:{teacher:'hitomi',title:'30. September · Alltag, Essen & Baden',itemStart:0,puzzleStart:0,kanjiStart:0,dailyWord:'湯舟'},
-  oct11:{teacher:'hitomi',title:'11. Oktober · Essen, Berlin & Uniformen',itemStart:items.findIndex(item=>item.jp==='昨日、お酒を飲みすぎました。'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='昨日'),kanjiStart:kanjiItems.findIndex(item=>item.word==='昨日'),dailyWord:'制服'},
-  mariOct3:{teacher:'mari',title:'3. Oktober 2026 · Wörter, Einkaufen & Gewohnheiten',itemStart:items.findIndex(item=>item.jp==='方法'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='もう少し'),kanjiStart:kanjiItems.findIndex(item=>item.word==='方法'),dailyWord:'美容師'},
-  aiOct8:{teacher:'ai',title:'8. Oktober 2026 · Alltag, Verkehr & Wohnen',itemStart:items.findIndex(item=>item.jp==='免許証'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='会社に'),kanjiStart:kanjiItems.findIndex(item=>item.word==='免許証'),dailyWord:'観覧車',audioReady:true}
+  sep30:{teacher:'hitomi',title:'30. September · Alltag, Essen & Baden',itemStart:0,puzzleStart:0,kanjiStart:0},
+  oct11:{teacher:'hitomi',title:'11. Oktober · Essen, Berlin & Uniformen',itemStart:items.findIndex(item=>item.jp==='昨日、お酒を飲みすぎました。'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='昨日'),kanjiStart:kanjiItems.findIndex(item=>item.word==='昨日')},
+  mariOct3:{teacher:'mari',title:'3. Oktober 2026 · Wörter, Einkaufen & Gewohnheiten',itemStart:items.findIndex(item=>item.jp==='方法'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='もう少し'),kanjiStart:kanjiItems.findIndex(item=>item.word==='方法')},
+  aiOct8:{teacher:'ai',title:'8. Oktober 2026 · Alltag, Verkehr & Wohnen',itemStart:items.findIndex(item=>item.jp==='免許証'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='会社に'),kanjiStart:kanjiItems.findIndex(item=>item.word==='免許証'),audioReady:true}
 };
 document.querySelectorAll('[data-teacher-count]').forEach(label=>{const teacher=label.closest('[data-teacher]').dataset.teacher;const count=Object.values(lessonMeta).filter(lesson=>lesson.teacher===teacher).length;label.textContent=count?`${count} Unterrichtstage`:'Noch keine Unterrichtstage'});
 function lessonRange(list,key){const lessons=Object.values(lessonMeta),current=lessonMeta[activeLesson],index=lessons.indexOf(current),start=current?.[key]??0,end=lessons[index+1]?.[key]??list.length;return list.slice(start,end)}
@@ -534,6 +534,16 @@ const renderCardBeforeAudio=renderCard;
 renderCard=function(){const flash=$('#flashWrap');flash.querySelectorAll('.lesson-audio-control').forEach(button=>button.remove());renderCardBeforeAudio();const item=cardDeck[cardIndex];const button=makeAudioButton(item);if(button)$('#flashcard').after(button)};
 const renderPuzzleBeforeAudio=renderPuzzle;
 renderPuzzle=function(){const area=$('#puzzleTranslation').parentElement;area.querySelectorAll('.lesson-audio-control').forEach(button=>button.remove());renderPuzzleBeforeAudio();const puzzle=puzzleDeck[puzzleIndex];const item=puzzle&&findAudioSentence(puzzle.parts.join(''));const button=makeAudioButton(item);if(button)$('#puzzleTranslation').after(button)};
+const dailyVocabulary=[...new Map(items.filter(item=>['Wort','Ausdruck','Redewendung'].includes(item.kind)).map(item=>[item.jp,item])).values()];
+let dailyWordEntry=null,dailyWordTimer=null;
+function localDayNumber(date){return Math.floor(Date.UTC(date.getFullYear(),date.getMonth(),date.getDate())/86400000)}
+function hashDailyDate(day){let hash=2166136261;for(const char of String(day)){hash^=char.charCodeAt(0);hash=Math.imul(hash,16777619)}return hash>>>0}
+function dailyWordForDate(date){if(!dailyVocabulary.length)return null;const today=localDayNumber(date),anchor=localDayNumber(new Date(2020,0,1)),firstDay=Math.min(today,anchor);let previous=-1,choice=0;for(let day=firstDay;day<=today;day++){const picked=hashDailyDate(day)%dailyVocabulary.length;choice=picked===previous?(picked+1)%dailyVocabulary.length:picked;previous=choice}return dailyVocabulary[choice]}
+function renderDailyWord(){dailyWordEntry=dailyWordForDate(new Date());if(!dailyWordEntry)return;$('#dailyWord').innerHTML=rubyText(dailyWordEntry.jp);$('#dailyTranslation').textContent=dailyWordEntry.de}
+function scheduleDailyWordRefresh(){clearTimeout(dailyWordTimer);const nextMidnight=new Date();nextMidnight.setHours(24,0,0,100);dailyWordTimer=setTimeout(()=>{renderDailyWord();scheduleDailyWordRefresh()},Math.max(1000,nextMidnight.getTime()-Date.now()))}
+function openDailyWordLesson(){if(!dailyWordEntry)return;const index=items.indexOf(dailyWordEntry),lessons=Object.entries(lessonMeta);for(let i=0;i<lessons.length;i++){const [id,lesson]=lessons[i],start=lesson.itemStart,end=lessons[i+1]?.[1].itemStart??items.length;if(index<start||index>=end)continue;selectedTeacher=lesson.teacher;openLesson(id,'cards');const cardIndexForWord=cardDeck.indexOf(dailyWordEntry);if(cardIndexForWord>=0){cardDeck.splice(cardIndexForWord,1);cardDeck.unshift(dailyWordEntry);cardIndex=0;renderCard()}$('#game').scrollIntoView({behavior:'smooth',block:'start'});return}}
+renderDailyWord();scheduleDailyWordRefresh();
+document.addEventListener('visibilitychange',()=>{if(!document.hidden){renderDailyWord();scheduleDailyWordRefresh()}});
 </script>
 </body>
 </html>
