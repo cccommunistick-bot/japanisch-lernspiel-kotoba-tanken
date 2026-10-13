@@ -40,7 +40,7 @@
     <h2>Bei welcher Lehrkraft möchtest du üben?</h2><p>Wähle zuerst deine Lehrkraft und danach den passenden Unterrichtstag.</p>
     <div class="lesson-grid teacher-grid">
       <button class="lesson-card teacher-card" data-teacher="hitomi"><span class="lesson-date" data-teacher-count></span><strong>ひとみ先生</strong><span>Alltag, Essen, Baden, Berlin und Uniformen.</span></button>
-      <button class="lesson-card teacher-card" data-teacher="ai"><span class="lesson-date" data-teacher-count></span><strong>あい先生</strong><span>Alltag, Verkehr, Wohnen und Geld.</span></button>
+      <button class="lesson-card teacher-card" data-teacher="ai"><span class="lesson-date" data-teacher-count></span><strong>あい先生</strong><span>Alltag, Verkehr, Wohnen und Gewohnheiten.</span></button>
       <button class="lesson-card teacher-card" data-teacher="mari"><span class="lesson-date" data-teacher-count></span><strong>まり先生</strong><span>Wörter, höfliche Bitten, Kleidung und Gewohnheiten.</span></button>
     </div>
   </section>
@@ -51,6 +51,7 @@
       <button class="lesson-card" data-lesson="sep30"><span class="lesson-date">Unterricht · 30. September</span><strong>Alltag, Essen &amp; Baden</strong><span>Spazierengehen, Haushalt, Pizza, Badekultur und Kyoto.</span></button>
       <button class="lesson-card" data-lesson="mariOct3"><span class="lesson-date">Unterricht · 3. Oktober 2026</span><strong>Wörter, Einkaufen &amp; Gewohnheiten</strong><span>Eigenschaften, höflich verhandeln, Kleidung und Beziehungen.</span></button>
       <button class="lesson-card" data-lesson="aiOct8"><span class="lesson-date">Unterricht · 8. Oktober 2026</span><strong>Alltag, Verkehr &amp; Wohnen</strong><span>Führerschein, Wege, Wohnung, Investitionen und neue Wörter.</span></button>
+      <button class="lesson-card" data-lesson="aiOct13"><span class="lesson-date">Unterricht · 13. Oktober 2026</span><strong>Alltag, Zeitverschiebung &amp; Gewohnheiten</strong><span>Jetlag, Regenschirm, Verhalten, Papier und Alltag.</span></button>
       <button class="lesson-card" data-lesson="oct11"><span class="lesson-date">Unterricht · 11. Oktober</span><strong>Essen, Berlin &amp; Uniformen</strong><span>Deutsche Küche, Festival of Lights, Arbeit und Schuluniformen.</span></button>
     </div>
     <div class="review-empty teacher-empty" id="noTeacherLessons" hidden><strong>Noch keine Unterrichtstage</strong>Für diese Lehrkraft sind noch keine Notizen hinterlegt.</div>
@@ -248,6 +249,40 @@ const items = [
   {jp:'信じる', audioText:'しんじる', de:'glauben; vertrauen', kind:'Wort', note:'人を信じる = einer Person vertrauen.', audioFile:'ai10-wort-26.mp3'},
   {jp:'皿', audioText:'さら', de:'Teller; flacher Teller', kind:'Wort', note:'皿 bezeichnet einen Teller oder eine flache Schale.', audioFile:'ai10-wort-27.mp3'},
   {jp:'まとめる', audioText:'まとめる', de:'zusammenfassen; zusammenstellen; bündeln', kind:'Wort', note:'メモをまとめる = Notizen zusammenfassen.', audioFile:'ai10-wort-28.mp3'},
+  {jp:'復習', de:'Wiederholung; wiederholen', kind:'Wort', note:'復習する = etwas wiederholen. Das Gegenstück ist 予習（よしゅう）= sich vorbereiten.'},
+  {jp:'予習', de:'Vorbereitung; vorbereiten', kind:'Wort', note:'予習する = den Stoff vor dem Unterricht vorbereiten; danach folgt die 復習.'},
+  {jp:'汗をふきます', de:'sich den Schweiß abwischen', kind:'Ausdruck', note:'汗（あせ）= Schweiß; ふく = abwischen.'},
+  {jp:'ふきます', de:'wischen; abwischen', kind:'Wort', note:'Zum Beispiel: 汗をふきます = sich den Schweiß abwischen.'},
+  {jp:'時差ぼけ', de:'Jetlag', kind:'Wort', note:'時差（じさ）= Zeitverschiebung; ぼけ = Benommenheit.'},
+  {jp:'時差ぼけしません', de:'Ich bekomme keinen Jetlag.', kind:'Ausdruck', note:'しません ist die höfliche Verneinung von します.'},
+  {jp:'２週間後', de:'in zwei Wochen; zwei Wochen später', kind:'Wort', note:'２週間（にしゅうかん）= zwei Wochen; 後（ご）= später.'},
+  {jp:'帰るとき', de:'wenn ich zurückkehre; beim Heimgehen', kind:'Ausdruck', note:'帰る（かえる）= zurückkehren; とき = wenn / zu dem Zeitpunkt.'},
+  {jp:'すぐに働かなければなりません', de:'Ich muss sofort arbeiten.', kind:'Ausdruck', note:'すぐに = sofort; ～なければなりません = müssen.'},
+  {jp:'遅れる', de:'sich verspäten; zu spät kommen', kind:'Wort', note:'約束に遅れる = zu spät zu einer Verabredung kommen.'},
+  {jp:'折る', de:'falten; abbrechen; etwas Langes knicken', kind:'Wort', note:'折る wird zum Beispiel für lange Gegenstände verwendet, die man knickt oder bricht.'},
+  {jp:'折りたたみ傘', de:'Klappschirm; Taschenschirm', kind:'Wort', note:'折りたたむ = zusammenklappen; 傘（かさ）= Regenschirm.'},
+  {jp:'折り紙', de:'Origami; gefaltetes Papier', kind:'Wort', note:'Auch おりがみ geschrieben; 折る（おる）= falten, 紙（かみ）= Papier.'},
+  {jp:'傘をさす', de:'einen Regenschirm aufspannen; den Schirm benutzen', kind:'Ausdruck', note:'さす wird in dieser Wendung für das Aufspannen oder Halten eines Regenschirms verwendet.'},
+  {jp:'生活', de:'Leben; Lebensalltag', kind:'Wort', note:'生活する = leben; seinen Alltag gestalten.'},
+  {jp:'習慣', de:'Gewohnheit; Brauch', kind:'Wort', note:'毎日の習慣 = tägliche Gewohnheit.'},
+  {jp:'点', de:'Punkt; Punktzahl; Aspekt', kind:'Wort', note:'点数（てんすう）= Punktzahl.'},
+  {jp:'典型的な', de:'typisch; charakteristisch', kind:'Wort', note:'典型的（てんけいてき）な例 = ein typisches Beispiel.'},
+  {jp:'むかつく', de:'genervt oder wütend sein', kind:'Wort', note:'Umgangssprachlich; むかついたとき = wenn man genervt ist.'},
+  {jp:'文句', de:'Beschwerde; Gemecker', kind:'Wort', note:'文句を言う = sich beschweren; meckern.'},
+  {jp:'むかついたとき、たくさん文句を言えます。', de:'Wenn ich genervt bin, kann ich mich viel beschweren.', kind:'Satz', note:'むかついたとき = wenn ich genervt bin; 文句を言う = sich beschweren.'},
+  {jp:'悪い', de:'schlecht; böse', kind:'Wort', note:'悪い天気 = schlechtes Wetter.'},
+  {jp:'紙', de:'Papier', kind:'Wort', note:'折り紙（おりがみ）= gefaltetes Papier / Origami.'},
+  {jp:'生ごみ', de:'Bioabfall; Küchenabfälle', kind:'Wort', note:'生（なま）ごみ sind organische Küchenabfälle.'},
+  {jp:'見たことがない', de:'noch nie gesehen haben', kind:'Ausdruck', note:'～たことがない = etwas noch nie getan oder erlebt haben.'},
+  {jp:'湖', de:'See', kind:'Wort', note:'湖（みずうみ）= ein See, keine Meeresbucht.'},
+  {jp:'現金', de:'Bargeld', kind:'Wort', note:'現金で払う = bar bezahlen.'},
+  {jp:'驚く', de:'sich wundern; überrascht sein', kind:'Wort', note:'驚きました = Ich war überrascht.'},
+  {jp:'びっくりする', de:'sich erschrecken; überrascht sein', kind:'Wort', note:'Umgangssprachlicher Ausdruck für überrascht oder erschrocken sein.'},
+  {jp:'種類', de:'Art; Sorte; Kategorie', kind:'Wort', note:'ビールの種類 = Biersorten.'},
+  {jp:'～について', de:'über; bezüglich', kind:'Ausdruck', note:'Thema + について = über ein Thema / bezüglich eines Themas.'},
+  {jp:'知っています', de:'wissen; kennen', kind:'Wort', note:'～について知っています = über etwas Bescheid wissen.'},
+  {jp:'帰るとき、すぐに働かなければなりません。', de:'Wenn ich zurückkomme, muss ich sofort arbeiten.', kind:'Satz', note:'帰るとき = wenn ich zurückkomme; 働かなければなりません = ich muss arbeiten.'},
+  {jp:'ビールの種類についてよく知っていますか？', de:'Kennst du dich gut mit Biersorten aus?', kind:'Satz', note:'種類について = über Sorten; よく知っていますか = kennst du dich gut aus?'}
 ];
 const puzzles = [
  {de:'Danach bin ich in der Stadt spazieren gegangen.',parts:['そのあとで','まちで','散歩しました。']},
@@ -278,6 +313,11 @@ const puzzles = [
  {de:'Hätten Sie kurz Zeit?',parts:['ちょっと','いいですか？']},
  {de:'Es kommt kein Auto.',parts:['車が','来ない。']},
  {de:'Ich werfe es in den Mülleimer.',parts:['ゴミ箱に','捨てます。']},
+ {de:'Wenn ich zurückkomme, muss ich sofort arbeiten.',parts:['帰るとき、','すぐに','働かなければ','なりません。']},
+ {de:'Wenn ich genervt bin, kann ich mich viel beschweren.',parts:['むかついたとき、','たくさん','文句を','言えます。']},
+ {de:'Kennst du dich gut mit Biersorten aus?',parts:['ビールの','種類について','よく','知っていますか？']},
+ {de:'Ich bekomme keinen Jetlag.',parts:['時差ぼけ','しません。']},
+ {de:'Sich den Schweiß abwischen.',parts:['汗を','ふきます。']},
 ];
 const kanjiItems = [
   {word:'散歩',reading:'さんぽ',de:'Spaziergang'}, {word:'外',reading:'そと',de:'draußen'},
@@ -351,7 +391,20 @@ const kanjiItems = [
   {word:'木造',reading:'もくぞう',de:'Holzbau'}, {word:'車',reading:'くるま',de:'Auto'},
   {word:'以上',reading:'いじょう',de:'mehr als; mindestens'}, {word:'ゴミ箱',reading:'ごみばこ',de:'Mülleimer'},
   {word:'捨てる',reading:'すてる',de:'wegwerfen'}, {word:'送る',reading:'おくる',de:'senden'},
-  {word:'信じる',reading:'しんじる',de:'glauben; vertrauen'}, {word:'皿',reading:'さら',de:'Teller'}
+  {word:'信じる',reading:'しんじる',de:'glauben; vertrauen'}, {word:'皿',reading:'さら',de:'Teller'},
+  {word:'復習',reading:'ふくしゅう',de:'Wiederholung'}, {word:'予習',reading:'よしゅう',de:'Vorbereitung'},
+  {word:'汗',reading:'あせ',de:'Schweiß'}, {word:'時差ぼけ',reading:'じさぼけ',de:'Jetlag'},
+  {word:'２週間後',reading:'にしゅうかんご',de:'in zwei Wochen'}, {word:'働く',reading:'はたらく',de:'arbeiten'},
+  {word:'遅れる',reading:'おくれる',de:'sich verspäten'}, {word:'折る',reading:'おる',de:'falten; abbrechen'},
+  {word:'折りたたみ傘',reading:'おりたたみがさ',de:'Klappschirm'}, {word:'折り紙',reading:'おりがみ',de:'Origami'},
+  {word:'傘',reading:'かさ',de:'Regenschirm'}, {word:'生活',reading:'せいかつ',de:'Leben; Alltag'},
+  {word:'習慣',reading:'しゅうかん',de:'Gewohnheit'}, {word:'点',reading:'てん',de:'Punkt; Punktzahl'},
+  {word:'典型的',reading:'てんけいてき',de:'typisch'}, {word:'文句',reading:'もんく',de:'Beschwerde'},
+  {word:'悪い',reading:'わるい',de:'schlecht'}, {word:'紙',reading:'かみ',de:'Papier'},
+  {word:'生ごみ',reading:'なまごみ',de:'Bioabfall'}, {word:'見る',reading:'みる',de:'sehen'},
+  {word:'湖',reading:'みずうみ',de:'See'}, {word:'現金',reading:'げんきん',de:'Bargeld'},
+  {word:'驚く',reading:'おどろく',de:'überrascht sein'}, {word:'種類',reading:'しゅるい',de:'Art; Sorte'},
+  {word:'知る',reading:'しる',de:'wissen; kennen'}
 ];
 const rubyReadings = {
   '買いました':'かいました', '散歩':'さんぽ', '外':'そと', '家':'いえ', '屋さん':'やさん', '屋':'や',
@@ -396,7 +449,15 @@ const rubyReadings = {
   '半地下の部屋':'はんちかのへや', '二階':'にかい', '貸します':'かします', '貸す':'かす',
   '億円':'おくえん', '羨ましい':'うらやましい', '投資':'とうし', '木造':'もくぞう',
   '来ない':'こない', '以上':'いじょう', 'ゴミ箱':'ごみばこ', '捨てます':'すてます',
-  '捨てる':'すてる', '送る':'おくる', '信じる':'しんじる', '皿':'さら'
+  '捨てる':'すてる', '送る':'おくる', '信じる':'しんじる', '皿':'さら',
+  '復習':'ふくしゅう', '予習':'よしゅう', '汗':'あせ', '時差ぼけ':'じさぼけ',
+  '時差ぼけしません':'じさぼけしません', '２週間後':'にしゅうかんご', '帰るとき':'かえるとき',
+  '働かなければなりません':'はたらかなければなりません', '遅れる':'おくれる', '折る':'おる',
+  '折りたたみ傘':'おりたたみがさ', '折り紙':'おりがみ', '傘':'かさ', '傘をさす':'かさをさす',
+  '生活':'せいかつ', '習慣':'しゅうかん', '点':'てん', '典型的な':'てんけいてきな',
+  '典型的':'てんけいてき', '文句':'もんく', '言えます':'いえます', '悪い':'わるい', '紙':'かみ',
+  '生ごみ':'なまごみ', '見たことがない':'みたことがない', '湖':'みずうみ', '現金':'げんきん',
+  '驚く':'おどろく', '種類':'しゅるい', '知っています':'しっています'
 };
 const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const rubyTerms = Object.keys(rubyReadings).sort((a,b)=>b.length-a.length);
@@ -415,7 +476,14 @@ const rubyOverrides={
   '半地下の部屋':'<ruby>半地下<rt>はんちか</rt></ruby>の<ruby>部屋<rt>へや</rt></ruby>',
   '貸します':'<ruby>貸<rt>か</rt></ruby>します', '1億円':'1<ruby>億<rt>おく</rt></ruby><ruby>円<rt>えん</rt></ruby>',
   '1階':'1<ruby>階<rt>かい</rt></ruby>', '2階':'2<ruby>階<rt>かい</rt></ruby>',
-  '信じる':'<ruby>信<rt>しん</rt></ruby>じる', '捨てます':'<ruby>捨<rt>す</rt></ruby>てます'
+  '信じる':'<ruby>信<rt>しん</rt></ruby>じる', '捨てます':'<ruby>捨<rt>す</rt></ruby>てます',
+  '汗をふきます':'<ruby>汗<rt>あせ</rt></ruby>をふきます',
+  '時差ぼけしません':'<ruby>時差<rt>じさ</rt></ruby>ぼけしません',
+  '２週間後':'２<ruby>週間後<rt>しゅうかんご</rt></ruby>',
+  '帰るとき':'<ruby>帰<rt>かえ</rt></ruby>るとき',
+  '折りたたみ傘':'<ruby>折<rt>お</rt></ruby>りたたみ<ruby>傘<rt>がさ</rt></ruby>',
+  '折り紙':'<ruby>折<rt>お</rt></ruby>り<ruby>紙<rt>がみ</rt></ruby>',
+  '傘をさす':'<ruby>傘<rt>かさ</rt></ruby>をさす'
 };
 function rubyFor(word){
   if(rubyOverrides[word])return rubyOverrides[word];
@@ -444,7 +512,8 @@ const lessonMeta={
   sep30:{teacher:'hitomi',title:'30. September · Alltag, Essen & Baden',itemStart:0,puzzleStart:0,kanjiStart:0},
   oct11:{teacher:'hitomi',title:'11. Oktober · Essen, Berlin & Uniformen',itemStart:items.findIndex(item=>item.jp==='昨日、お酒を飲みすぎました。'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='昨日'),kanjiStart:kanjiItems.findIndex(item=>item.word==='昨日')},
   mariOct3:{teacher:'mari',title:'3. Oktober 2026 · Wörter, Einkaufen & Gewohnheiten',itemStart:items.findIndex(item=>item.jp==='方法'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='もう少し'),kanjiStart:kanjiItems.findIndex(item=>item.word==='方法')},
-  aiOct8:{teacher:'ai',title:'8. Oktober 2026 · Alltag, Verkehr & Wohnen',itemStart:items.findIndex(item=>item.jp==='免許証'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='会社に'),kanjiStart:kanjiItems.findIndex(item=>item.word==='免許証'),audioReady:true}
+  aiOct8:{teacher:'ai',title:'8. Oktober 2026 · Alltag, Verkehr & Wohnen',itemStart:items.findIndex(item=>item.jp==='免許証'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='会社に'),kanjiStart:kanjiItems.findIndex(item=>item.word==='免許証'),audioReady:true},
+  aiOct13:{teacher:'ai',title:'13. Oktober 2026 · Zeitverschiebung, Regenschirm & Alltag',itemStart:items.findIndex(item=>item.jp==='復習'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='帰るとき、'),kanjiStart:kanjiItems.findIndex(item=>item.word==='復習'),audioReady:false}
 };
 document.querySelectorAll('[data-teacher-count]').forEach(label=>{const teacher=label.closest('[data-teacher]').dataset.teacher;const count=Object.values(lessonMeta).filter(lesson=>lesson.teacher===teacher).length;label.textContent=count?`${count} Unterrichtstage`:'Noch keine Unterrichtstage'});
 function lessonRange(list,key){const lessons=Object.values(lessonMeta),current=lessonMeta[activeLesson],index=lessons.indexOf(current),start=current?.[key]??0,end=lessons[index+1]?.[key]??list.length;return list.slice(start,end)}
@@ -488,7 +557,7 @@ $('#nextPuzzle').addEventListener('click',()=>{puzzleIndex=(puzzleIndex+1)%puzzl
 function startKanjiRound(){kanjiDeck=shuffle(lessonKanji()).slice(0,10);kanjiIndex=0;kanjiLocked=false;$('#kanjiView').hidden=false;$('#endScreen').classList.remove('show');renderKanjiQuiz()}
 function renderKanjiQuiz(){if(mode!=='kanji')return;if(kanjiIndex>=kanjiDeck.length){$('#kanjiView').hidden=true;$('#endScreen').classList.add('show');$('#endMessage').textContent='Die Kanji-Runde ist geschafft — du hast zehn Lesungen trainiert.';return}kanjiLocked=false;const item=kanjiDeck[kanjiIndex];$('#kanjiCount').textContent=`Runde ${kanjiRound} · Frage ${kanjiIndex+1}/${kanjiDeck.length}`;$('#kanjiProgress').style.width=`${kanjiIndex/kanjiDeck.length*100}%`;const distractors=shuffle(kanjiDeck.filter(other=>other!==item&&other.reading!==item.reading)).slice(0,3);const options=shuffle([item,...distractors]);$('#kanjiQuestionArea').innerHTML=`<div class="prompt-label">Wie liest man dieses Kanji-Wort?</div><h3 class="prompt jp">${item.word}</h3><div class="choices">${options.map((option,i)=>`<button class="choice" data-correct="${option===item}"><span class="translation">${String.fromCharCode(65+i)}　<span class="jp">${option.reading}</span></span></button>`).join('')}</div><div class="feedback" id="kanjiFeedback"><span></span><button id="kanjiNext">Weiter →</button></div>`;document.querySelectorAll('#kanjiQuestionArea .choice').forEach(button=>button.addEventListener('click',()=>answerKanji(button,item)));$('#kanjiNext').addEventListener('click',()=>{kanjiIndex++;renderKanjiQuiz()})}
 function answerKanji(button,item){if(kanjiLocked)return;kanjiLocked=true;const correct=button.dataset.correct==='true';if(correct){score++;streak++;button.classList.add('correct')}else{streak=0;button.classList.add('wrong');$('#kanjiQuestionArea .choice[data-correct="true"]').classList.add('correct')}updateStats();document.querySelectorAll('#kanjiQuestionArea .choice').forEach(option=>option.disabled=true);const feedback=$('#kanjiFeedback');feedback.className=`feedback show ${correct?'good':'bad'}`;feedback.querySelector('span').innerHTML=`<strong>${correct?'Richtig!':'Die Lesung ist:'}</strong> ${rubyText(item.word)} · ${item.reading} — ${item.de}`;$('#kanjiProgress').style.width=`${(kanjiIndex+1)/kanjiDeck.length*100}%`}
-const samuraiReadingOverrides={'週に1度':'しゅうにいちど','〜性':'せい'};
+const samuraiReadingOverrides={'週に1度':'しゅうにいちど','〜性':'せい','汗をふきます':'あせをふきます','すぐに働かなければなりません':'すぐにはたらかなければなりません'};
 function getSamuraiAudioContext(){if(!samuraiAudioContext){const AudioContextClass=window.AudioContext||window.webkitAudioContext;if(!AudioContextClass)return null;samuraiAudioContext=new AudioContextClass()}if(samuraiAudioContext.state==='suspended')samuraiAudioContext.resume().catch(()=>{});return samuraiAudioContext}
 function samuraiTone(frequency,duration=.16,wave='square',volume=.018,delay=0){const context=getSamuraiAudioContext();if(!context)return;const start=context.currentTime+delay,oscillator=context.createOscillator(),gain=context.createGain();oscillator.type=wave;oscillator.frequency.setValueAtTime(frequency,start);gain.gain.setValueAtTime(.0001,start);gain.gain.exponentialRampToValueAtTime(volume,start+.018);gain.gain.exponentialRampToValueAtTime(.0001,start+duration);oscillator.connect(gain);gain.connect(context.destination);oscillator.start(start);oscillator.stop(start+duration+.03)}
 const samuraiMelody=[392,0,523,587,0,523,440,0,392,0,330,392,0,440,523,0],samuraiBass=[196,147,165,220];
