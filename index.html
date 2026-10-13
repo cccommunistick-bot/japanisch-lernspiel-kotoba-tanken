@@ -31,7 +31,7 @@
 </head>
 <body>
 <main class="shell">
-  <div class="topline"><div class="brand"><div class="mark">言</div><span>KOTOBA探検</span></div><div class="today">Deine Unterrichtsnotizen · Nach Lehrkraft sortiert</div></div>
+  <div class="topline"><div class="brand"><div class="mark">言</div><span>KOTOBA探検</span></div><div class="today">Lokale Testversion · Nach Lehrkraft sortiert</div></div>
   <section class="hero">
     <div class="hero-copy"><div class="eyebrow">Japanisch lernen · spielerisch wiederholen</div><h1>Ein paar Wörter.<br>Ein großer Sprung.</h1><p>Trainiere Vokabeln, schreibe Japanisch aus dem Gedächtnis, setze Satzteile zusammen und übe Kanji-Lesungen. Alles aus deinen Unterrichtsnotizen.</p></div>
     <aside class="daily-card"><div class="daily-top">Wort des Tages</div><div class="daily-word jp" id="dailyWord"></div><div class="daily-translation" id="dailyTranslation"></div><button onclick="openDailyWordLesson()">✦ Wort in Karteikarten üben</button></aside>
@@ -249,40 +249,40 @@ const items = [
   {jp:'信じる', audioText:'しんじる', de:'glauben; vertrauen', kind:'Wort', note:'人を信じる = einer Person vertrauen.', audioFile:'ai10-wort-26.mp3'},
   {jp:'皿', audioText:'さら', de:'Teller; flacher Teller', kind:'Wort', note:'皿 bezeichnet einen Teller oder eine flache Schale.', audioFile:'ai10-wort-27.mp3'},
   {jp:'まとめる', audioText:'まとめる', de:'zusammenfassen; zusammenstellen; bündeln', kind:'Wort', note:'メモをまとめる = Notizen zusammenfassen.', audioFile:'ai10-wort-28.mp3'},
-  {jp:'復習', de:'Wiederholung; wiederholen', kind:'Wort', note:'復習する = etwas wiederholen. Das Gegenstück ist 予習（よしゅう）= sich vorbereiten.'},
-  {jp:'予習', de:'Vorbereitung; vorbereiten', kind:'Wort', note:'予習する = den Stoff vor dem Unterricht vorbereiten; danach folgt die 復習.'},
-  {jp:'汗をふきます', de:'sich den Schweiß abwischen', kind:'Ausdruck', note:'汗（あせ）= Schweiß; ふく = abwischen.'},
-  {jp:'ふきます', de:'wischen; abwischen', kind:'Wort', note:'Zum Beispiel: 汗をふきます = sich den Schweiß abwischen.'},
-  {jp:'時差ぼけ', de:'Jetlag', kind:'Wort', note:'時差（じさ）= Zeitverschiebung; ぼけ = Benommenheit.'},
-  {jp:'時差ぼけしません', de:'Ich bekomme keinen Jetlag.', kind:'Ausdruck', note:'しません ist die höfliche Verneinung von します.'},
-  {jp:'２週間後', de:'in zwei Wochen; zwei Wochen später', kind:'Wort', note:'２週間（にしゅうかん）= zwei Wochen; 後（ご）= später.'},
-  {jp:'帰るとき', de:'wenn ich zurückkehre; beim Heimgehen', kind:'Ausdruck', note:'帰る（かえる）= zurückkehren; とき = wenn / zu dem Zeitpunkt.'},
-  {jp:'すぐに働かなければなりません', de:'Ich muss sofort arbeiten.', kind:'Ausdruck', note:'すぐに = sofort; ～なければなりません = müssen.'},
-  {jp:'遅れる', de:'sich verspäten; zu spät kommen', kind:'Wort', note:'約束に遅れる = zu spät zu einer Verabredung kommen.'},
-  {jp:'折る', de:'falten; abbrechen; etwas Langes knicken', kind:'Wort', note:'折る wird zum Beispiel für lange Gegenstände verwendet, die man knickt oder bricht.'},
-  {jp:'折りたたみ傘', de:'Klappschirm; Taschenschirm', kind:'Wort', note:'折りたたむ = zusammenklappen; 傘（かさ）= Regenschirm.'},
-  {jp:'折り紙', de:'Origami; gefaltetes Papier', kind:'Wort', note:'Auch おりがみ geschrieben; 折る（おる）= falten, 紙（かみ）= Papier.'},
-  {jp:'傘をさす', de:'einen Regenschirm aufspannen; den Schirm benutzen', kind:'Ausdruck', note:'さす wird in dieser Wendung für das Aufspannen oder Halten eines Regenschirms verwendet.'},
-  {jp:'生活', de:'Leben; Lebensalltag', kind:'Wort', note:'生活する = leben; seinen Alltag gestalten.'},
-  {jp:'習慣', de:'Gewohnheit; Brauch', kind:'Wort', note:'毎日の習慣 = tägliche Gewohnheit.'},
-  {jp:'点', de:'Punkt; Punktzahl; Aspekt', kind:'Wort', note:'点数（てんすう）= Punktzahl.'},
-  {jp:'典型的な', de:'typisch; charakteristisch', kind:'Wort', note:'典型的（てんけいてき）な例 = ein typisches Beispiel.'},
-  {jp:'むかつく', de:'genervt oder wütend sein', kind:'Wort', note:'Umgangssprachlich; むかついたとき = wenn man genervt ist.'},
-  {jp:'文句', de:'Beschwerde; Gemecker', kind:'Wort', note:'文句を言う = sich beschweren; meckern.'},
-  {jp:'むかついたとき、たくさん文句を言えます。', de:'Wenn ich genervt bin, kann ich mich viel beschweren.', kind:'Satz', note:'むかついたとき = wenn ich genervt bin; 文句を言う = sich beschweren.'},
-  {jp:'悪い', de:'schlecht; böse', kind:'Wort', note:'悪い天気 = schlechtes Wetter.'},
-  {jp:'紙', de:'Papier', kind:'Wort', note:'折り紙（おりがみ）= gefaltetes Papier / Origami.'},
-  {jp:'生ごみ', de:'Bioabfall; Küchenabfälle', kind:'Wort', note:'生（なま）ごみ sind organische Küchenabfälle.'},
-  {jp:'見たことがない', de:'noch nie gesehen haben', kind:'Ausdruck', note:'～たことがない = etwas noch nie getan oder erlebt haben.'},
-  {jp:'湖', de:'See', kind:'Wort', note:'湖（みずうみ）= ein See, keine Meeresbucht.'},
-  {jp:'現金', de:'Bargeld', kind:'Wort', note:'現金で払う = bar bezahlen.'},
-  {jp:'驚く', de:'sich wundern; überrascht sein', kind:'Wort', note:'驚きました = Ich war überrascht.'},
-  {jp:'びっくりする', de:'sich erschrecken; überrascht sein', kind:'Wort', note:'Umgangssprachlicher Ausdruck für überrascht oder erschrocken sein.'},
-  {jp:'種類', de:'Art; Sorte; Kategorie', kind:'Wort', note:'ビールの種類 = Biersorten.'},
-  {jp:'～について', de:'über; bezüglich', kind:'Ausdruck', note:'Thema + について = über ein Thema / bezüglich eines Themas.'},
-  {jp:'知っています', de:'wissen; kennen', kind:'Wort', note:'～について知っています = über etwas Bescheid wissen.'},
-  {jp:'帰るとき、すぐに働かなければなりません。', de:'Wenn ich zurückkomme, muss ich sofort arbeiten.', kind:'Satz', note:'帰るとき = wenn ich zurückkomme; 働かなければなりません = ich muss arbeiten.'},
-  {jp:'ビールの種類についてよく知っていますか？', de:'Kennst du dich gut mit Biersorten aus?', kind:'Satz', note:'種類について = über Sorten; よく知っていますか = kennst du dich gut aus?'}
+  {jp:'復習', audioText:'ふくしゅう', audioFile:'ai13-wort-01.mp3', de:'Wiederholung; wiederholen', kind:'Wort', note:'復習する = etwas wiederholen. Das Gegenstück ist 予習（よしゅう）= sich vorbereiten.'},
+  {jp:'予習', audioText:'よしゅう', audioFile:'ai13-wort-02.mp3', de:'Vorbereitung; vorbereiten', kind:'Wort', note:'予習する = den Stoff vor dem Unterricht vorbereiten; danach folgt die 復習.'},
+  {jp:'汗をふきます', audioText:'あせをふきます', audioFile:'ai13-wort-03.mp3', de:'sich den Schweiß abwischen', kind:'Ausdruck', note:'汗（あせ）= Schweiß; ふく = abwischen.'},
+  {jp:'ふきます', audioText:'ふきます', audioFile:'ai13-wort-04.mp3', de:'wischen; abwischen', kind:'Wort', note:'Zum Beispiel: 汗をふきます = sich den Schweiß abwischen.'},
+  {jp:'時差ぼけ', audioText:'じさぼけ', audioFile:'ai13-wort-05.mp3', de:'Jetlag', kind:'Wort', note:'時差（じさ）= Zeitverschiebung; ぼけ = Benommenheit.'},
+  {jp:'時差ぼけしません', audioText:'じさぼけしません', audioFile:'ai13-wort-06.mp3', de:'Ich bekomme keinen Jetlag.', kind:'Ausdruck', note:'しません ist die höfliche Verneinung von します.'},
+  {jp:'２週間後', audioText:'にしゅうかんご', audioFile:'ai13-wort-07.mp3', de:'in zwei Wochen; zwei Wochen später', kind:'Wort', note:'２週間（にしゅうかん）= zwei Wochen; 後（ご）= später.'},
+  {jp:'帰るとき', audioText:'かえるとき', audioFile:'ai13-wort-08.mp3', de:'wenn ich zurückkehre; beim Heimgehen', kind:'Ausdruck', note:'帰る（かえる）= zurückkehren; とき = wenn / zu dem Zeitpunkt.'},
+  {jp:'すぐに働かなければなりません', audioText:'すぐにはたらかなければなりません', audioFile:'ai13-wort-09.mp3', de:'Ich muss sofort arbeiten.', kind:'Ausdruck', note:'すぐに = sofort; ～なければなりません = müssen.'},
+  {jp:'遅れる', audioText:'おくれる', audioFile:'ai13-wort-10.mp3', de:'sich verspäten; zu spät kommen', kind:'Wort', note:'約束に遅れる = zu spät zu einer Verabredung kommen.'},
+  {jp:'折る', audioText:'おる', audioFile:'ai13-wort-11.mp3', de:'falten; abbrechen; etwas Langes knicken', kind:'Wort', note:'折る wird zum Beispiel für lange Gegenstände verwendet, die man knickt oder bricht.'},
+  {jp:'折りたたみ傘', audioText:'おりたたみがさ', audioFile:'ai13-wort-12.mp3', de:'Klappschirm; Taschenschirm', kind:'Wort', note:'折りたたむ = zusammenklappen; 傘（かさ）= Regenschirm.'},
+  {jp:'折り紙', audioText:'おりがみ', audioFile:'ai13-wort-13.mp3', de:'Origami; gefaltetes Papier', kind:'Wort', note:'Auch おりがみ geschrieben; 折る（おる）= falten, 紙（かみ）= Papier.'},
+  {jp:'傘をさす', audioText:'かさをさす', audioFile:'ai13-wort-14.mp3', de:'einen Regenschirm aufspannen; den Schirm benutzen', kind:'Ausdruck', note:'さす wird in dieser Wendung für das Aufspannen oder Halten eines Regenschirms verwendet.'},
+  {jp:'生活', audioText:'せいかつ', audioFile:'ai13-wort-15.mp3', de:'Leben; Lebensalltag', kind:'Wort', note:'生活する = leben; seinen Alltag gestalten.'},
+  {jp:'習慣', audioText:'しゅうかん', audioFile:'ai13-wort-16.mp3', de:'Gewohnheit; Brauch', kind:'Wort', note:'毎日の習慣 = tägliche Gewohnheit.'},
+  {jp:'点', audioText:'てん', audioFile:'ai13-wort-17.mp3', de:'Punkt; Punktzahl; Aspekt', kind:'Wort', note:'点数（てんすう）= Punktzahl.'},
+  {jp:'典型的な', audioText:'てんけいてきな', audioFile:'ai13-wort-18.mp3', de:'typisch; charakteristisch', kind:'Wort', note:'典型的（てんけいてき）な例 = ein typisches Beispiel.'},
+  {jp:'むかつく', audioText:'むかつく', audioFile:'ai13-wort-19.mp3', de:'genervt oder wütend sein', kind:'Wort', note:'Umgangssprachlich; むかついたとき = wenn man genervt ist.'},
+  {jp:'文句', audioText:'もんく', audioFile:'ai13-wort-20.mp3', de:'Beschwerde; Gemecker', kind:'Wort', note:'文句を言う = sich beschweren; meckern.'},
+  {jp:'むかついたとき、たくさん文句を言えます。', audioText:'むかついたとき、たくさんもんくをいえます。', audioFile:'ai13-satz-01.mp3', de:'Wenn ich genervt bin, kann ich mich viel beschweren.', kind:'Satz', note:'むかついたとき = wenn ich genervt bin; 文句を言う = sich beschweren.'},
+  {jp:'悪い', audioText:'わるい', audioFile:'ai13-wort-21.mp3', de:'schlecht; böse', kind:'Wort', note:'悪い天気 = schlechtes Wetter.'},
+  {jp:'紙', audioText:'かみ', audioFile:'ai13-wort-22.mp3', de:'Papier', kind:'Wort', note:'折り紙（おりがみ）= gefaltetes Papier / Origami.'},
+  {jp:'生ごみ', audioText:'なまごみ', audioFile:'ai13-wort-23.mp3', de:'Bioabfall; Küchenabfälle', kind:'Wort', note:'生（なま）ごみ sind organische Küchenabfälle.'},
+  {jp:'見たことがない', audioText:'みたことがない', audioFile:'ai13-wort-24.mp3', de:'noch nie gesehen haben', kind:'Ausdruck', note:'～たことがない = etwas noch nie getan oder erlebt haben.'},
+  {jp:'湖', audioText:'みずうみ', audioFile:'ai13-wort-25.mp3', de:'See', kind:'Wort', note:'湖（みずうみ）= ein See, keine Meeresbucht.'},
+  {jp:'現金', audioText:'げんきん', audioFile:'ai13-wort-26.mp3', de:'Bargeld', kind:'Wort', note:'現金で払う = bar bezahlen.'},
+  {jp:'驚く', audioText:'おどろく', audioFile:'ai13-wort-27.mp3', de:'sich wundern; überrascht sein', kind:'Wort', note:'驚きました = Ich war überrascht.'},
+  {jp:'びっくりする', audioText:'びっくりする', audioFile:'ai13-wort-28.mp3', de:'sich erschrecken; überrascht sein', kind:'Wort', note:'Umgangssprachlicher Ausdruck für überrascht oder erschrocken sein.'},
+  {jp:'種類', audioText:'しゅるい', audioFile:'ai13-wort-29.mp3', de:'Art; Sorte; Kategorie', kind:'Wort', note:'ビールの種類 = Biersorten.'},
+  {jp:'～について', audioText:'について', audioFile:'ai13-wort-30.mp3', de:'über; bezüglich', kind:'Ausdruck', note:'Thema + について = über ein Thema / bezüglich eines Themas.'},
+  {jp:'知っています', audioText:'しっています', audioFile:'ai13-wort-31.mp3', de:'wissen; kennen', kind:'Wort', note:'～について知っています = über etwas Bescheid wissen.'},
+  {jp:'帰るとき、すぐに働かなければなりません。', audioText:'かえるとき、すぐにはたらかなければなりません。', audioFile:'ai13-satz-02.mp3', de:'Wenn ich zurückkomme, muss ich sofort arbeiten.', kind:'Satz', note:'帰るとき = wenn ich zurückkomme; 働かなければなりません = ich muss arbeiten.'},
+  {jp:'ビールの種類についてよく知っていますか？', audioText:'びーるのしゅるいについてよくしっていますか？', audioFile:'ai13-satz-03.mp3', de:'Kennst du dich gut mit Biersorten aus?', kind:'Satz', note:'種類について = über Sorten; よく知っていますか = kennst du dich gut aus?'}
 ];
 const puzzles = [
  {de:'Danach bin ich in der Stadt spazieren gegangen.',parts:['そのあとで','まちで','散歩しました。']},
@@ -513,7 +513,7 @@ const lessonMeta={
   oct11:{teacher:'hitomi',title:'11. Oktober · Essen, Berlin & Uniformen',itemStart:items.findIndex(item=>item.jp==='昨日、お酒を飲みすぎました。'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='昨日'),kanjiStart:kanjiItems.findIndex(item=>item.word==='昨日')},
   mariOct3:{teacher:'mari',title:'3. Oktober 2026 · Wörter, Einkaufen & Gewohnheiten',itemStart:items.findIndex(item=>item.jp==='方法'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='もう少し'),kanjiStart:kanjiItems.findIndex(item=>item.word==='方法')},
   aiOct8:{teacher:'ai',title:'8. Oktober 2026 · Alltag, Verkehr & Wohnen',itemStart:items.findIndex(item=>item.jp==='免許証'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='会社に'),kanjiStart:kanjiItems.findIndex(item=>item.word==='免許証'),audioReady:true},
-  aiOct13:{teacher:'ai',title:'13. Oktober 2026 · Zeitverschiebung, Regenschirm & Alltag',itemStart:items.findIndex(item=>item.jp==='復習'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='帰るとき、'),kanjiStart:kanjiItems.findIndex(item=>item.word==='復習'),audioReady:false}
+  aiOct13:{teacher:'ai',title:'13. Oktober 2026 · Zeitverschiebung, Regenschirm & Alltag',itemStart:items.findIndex(item=>item.jp==='復習'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='帰るとき、'),kanjiStart:kanjiItems.findIndex(item=>item.word==='復習'),audioReady:true}
 };
 document.querySelectorAll('[data-teacher-count]').forEach(label=>{const teacher=label.closest('[data-teacher]').dataset.teacher;const count=Object.values(lessonMeta).filter(lesson=>lesson.teacher===teacher).length;label.textContent=count?`${count} Unterrichtstage`:'Noch keine Unterrichtstage'});
 function lessonRange(list,key){const lessons=Object.values(lessonMeta),current=lessonMeta[activeLesson],index=lessons.indexOf(current),start=current?.[key]??0,end=lessons[index+1]?.[key]??list.length;return list.slice(start,end)}
