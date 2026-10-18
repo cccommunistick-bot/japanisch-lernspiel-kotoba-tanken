@@ -52,6 +52,7 @@
       <button class="lesson-card" data-lesson="mariOct3"><span class="lesson-date">Unterricht · 3. Oktober 2026</span><strong>Wörter, Einkaufen &amp; Gewohnheiten</strong><span>Eigenschaften, höflich verhandeln, Kleidung und Beziehungen.</span></button>
       <button class="lesson-card" data-lesson="aiOct8"><span class="lesson-date">Unterricht · 8. Oktober 2026</span><strong>Alltag, Verkehr &amp; Wohnen</strong><span>Führerschein, Wege, Wohnung, Investitionen und neue Wörter.</span></button>
       <button class="lesson-card" data-lesson="aiOct13"><span class="lesson-date">Unterricht · 13. Oktober 2026</span><strong>Alltag, Zeitverschiebung &amp; Gewohnheiten</strong><span>Jetlag, Regenschirm, Verhalten, Papier und Alltag.</span></button>
+      <button class="lesson-card" data-lesson="aiOct16"><span class="lesson-date">Unterricht · 16. Oktober 2026</span><strong>Essen, Tee &amp; Alltag</strong><span>Zutaten, Teesorten, Gespräche und wichtige Verben.</span></button>
       <button class="lesson-card" data-lesson="oct11"><span class="lesson-date">Unterricht · 11. Oktober</span><strong>Essen, Berlin &amp; Uniformen</strong><span>Deutsche Küche, Festival of Lights, Arbeit und Schuluniformen.</span></button>
     </div>
     <div class="review-empty teacher-empty" id="noTeacherLessons" hidden><strong>Noch keine Unterrichtstage</strong>Für diese Lehrkraft sind noch keine Notizen hinterlegt.</div>
@@ -283,6 +284,45 @@ const items = [
   {jp:'知っています', audioText:'しっています', audioFile:'ai13-wort-31.mp3', de:'wissen; kennen', kind:'Wort', note:'～について知っています = über etwas Bescheid wissen.'},
   {jp:'帰るとき、すぐに働かなければなりません。', audioText:'かえるとき、すぐにはたらかなければなりません。', audioFile:'ai13-satz-02.mp3', de:'Wenn ich zurückkomme, muss ich sofort arbeiten.', kind:'Satz', note:'帰るとき = wenn ich zurückkomme; 働かなければなりません = ich muss arbeiten.'},
   {jp:'ビールの種類についてよく知っていますか？', audioText:'びーるのしゅるいについてよくしっていますか？', audioFile:'ai13-satz-03.mp3', de:'Kennst du dich gut mit Biersorten aus?', kind:'Satz', note:'種類について = über Sorten; よく知っていますか = kennst du dich gut aus?'}
+
+  {jp:'一番目のお客さん', audioText:'いちばんめのおきゃくさん', audioFile:'ai16-wort-01.mp3', de:'der erste Kunde / Gast', kind:'Ausdruck', note:'一番目（いちばんめ）= der erste; お客さん（おきゃくさん）= Kunde oder Gast.'},
+  {jp:'最初のお客さん', audioText:'さいしょのおきゃくさん', audioFile:'ai16-wort-02.mp3', de:'der erste Kunde / Gast; der erste Besucher', kind:'Ausdruck', note:'最初（さいしょ）= Anfang; zuerst. Im Zusammenhang ähnlich wie 一番目.'},
+  {jp:'一番目', audioText:'いちばんめ', audioFile:'ai16-wort-03.mp3', de:'der / die Erste', kind:'Wort', note:'Ordnungszahl: 一番目（いちばんめ）= der erste Platz / die erste Person.'},
+  {jp:'二番目', audioText:'にばんめ', audioFile:'ai16-wort-04.mp3', de:'der / die Zweite', kind:'Wort', note:'二番目（にばんめ）= an zweiter Stelle.'},
+  {jp:'三番目', audioText:'さんばんめ', audioFile:'ai16-wort-05.mp3', de:'der / die Dritte', kind:'Wort', note:'三番目（さんばんめ）= an dritter Stelle.'},
+  {jp:'材料', audioText:'ざいりょう', audioFile:'ai16-wort-06.mp3', de:'Zutat; Material', kind:'Wort', note:'料理の材料（りょうりのざいりょう）= Zutaten fürs Essen.'},
+  {jp:'にんじん', audioText:'にんじん', audioFile:'ai16-wort-07.mp3', de:'Karotte; Möhre', kind:'Wort', note:'Wird meist in Hiragana oder mit dem Kanji 人参 geschrieben.'},
+  {jp:'キャベツ', audioText:'キャベツ', audioFile:'ai16-wort-08.mp3', de:'Kohl; Weißkohl', kind:'Wort', note:'Katakana-Schreibweise des Lehnworts für Kohl.'},
+  {jp:'味噌も入れました', audioText:'みそもいれました', audioFile:'ai16-satz-01.mp3', de:'Ich habe auch Miso hinzugegeben.', kind:'Satz', note:'味噌（みそ）= Miso; 入れました（いれました）= hineingegeben.'},
+  {jp:'レタス', audioText:'レタス', audioFile:'ai16-wort-09.mp3', de:'Salat; Kopfsalat', kind:'Wort', note:'Lehnwort, geschrieben in Katakana.'},
+  {jp:'マッシュルーム', audioText:'マッシュルーム', audioFile:'ai16-wort-10.mp3', de:'Champignon', kind:'Wort', note:'Lehnwort für Champignon; geschrieben in Katakana.'},
+  {jp:'ハム', audioText:'ハム', audioFile:'ai16-wort-11.mp3', de:'Schinken', kind:'Wort', note:'Lehnwort, geschrieben in Katakana.'},
+  {jp:'ウインナー', audioText:'ウインナー', audioFile:'ai16-wort-12.mp3', de:'Würstchen; Wiener Würstchen', kind:'Wort', note:'Im Japanischen oft kurz für ウインナーソーセージ.'},
+  {jp:'ソーセージ', audioText:'ソーセージ', audioFile:'ai16-wort-35.mp3', de:'Wurst; Würstchen', kind:'Wort', note:'Allgemeine Bezeichnung für Wurst; ウインナー ist eine bestimmte Würstchensorte.'},
+  {jp:'デュッセルドルフに住んでいたとき、家で抹茶を飲みましたか？', audioText:'デュッセルドルフにすんでいたとき、いえでまっちゃをのみましたか？', audioFile:'ai16-satz-02.mp3', de:'Hast du Matcha getrunken, als du in Düsseldorf gewohnt hast?', kind:'Satz', note:'住んでいたとき = als du gewohnt hast; 抹茶（まっちゃ）= Matcha.'},
+  {jp:'デュッセルドルフに住んでいたとき、家用に抹茶を買いましたか？', audioText:'デュッセルドルフにすんでいたとき、いえようにまっちゃをかいましたか？', audioFile:'ai16-satz-03.mp3', de:'Hast du Matcha für zu Hause gekauft, als du in Düsseldorf gewohnt hast?', kind:'Satz', note:'家用（いえよう）= für zu Hause; ～用（よう）= für den Zweck / Gebrauch.'},
+  {jp:'家用', audioText:'いえよう', audioFile:'ai16-wort-13.mp3', de:'für zu Hause; für den Haushalt', kind:'Wort', note:'～用（よう）= für einen bestimmten Zweck oder Gebrauch.'},
+  {jp:'会社用', audioText:'かいしゃよう', audioFile:'ai16-wort-14.mp3', de:'für die Firma; für den Gebrauch bei der Arbeit', kind:'Wort', note:'会社（かいしゃ）= Firma; ～用（よう）= für … bestimmt.'},
+  {jp:'緑茶', audioText:'りょくちゃ', audioFile:'ai16-wort-15.mp3', de:'grüner Tee', kind:'Wort', note:'Oberbegriff für japanische grüne Tees.'},
+  {jp:'煎茶', audioText:'せんちゃ', audioFile:'ai16-wort-16.mp3', de:'Sencha; japanischer Grüntee', kind:'Wort', note:'Eine verbreitete Sorte japanischen Grüntees.'},
+  {jp:'ほうじ茶', audioText:'ほうじちゃ', audioFile:'ai16-wort-17.mp3', de:'Hōjicha; gerösteter grüner Tee', kind:'Wort', note:'Gerösteter japanischer Grüntee mit mildem, nussigem Aroma.'},
+  {jp:'玄米茶', audioText:'げんまいちゃ', audioFile:'ai16-wort-18.mp3', de:'Genmaicha; Grüntee mit geröstetem Reis', kind:'Wort', note:'Japanischer Grüntee, dem gerösteter Reis beigemischt wird.'},
+  {jp:'文句を言う', audioText:'もんくをいう', audioFile:'ai16-wort-19.mp3', de:'sich beschweren; meckern', kind:'Ausdruck', note:'文句（もんく）= Beschwerde; 言う（いう）= sagen.'},
+  {jp:'足りない', audioText:'たりない', audioFile:'ai16-wort-20.mp3', de:'nicht reichen; nicht genug sein', kind:'Wort', note:'時間が足りない = Die Zeit reicht nicht.'},
+  {jp:'炭酸', audioText:'たんさん', audioFile:'ai16-wort-21.mp3', de:'Kohlensäure; Sprudel', kind:'Wort', note:'炭酸水（たんさんすい）= Sprudelwasser.'},
+  {jp:'ソーダ', audioText:'ソーダ', audioFile:'ai16-wort-22.mp3', de:'Soda; Limonade', kind:'Wort', note:'Lehnwort. 炭酸（たんさん）bezeichnet Kohlensäure bzw. Sprudel.'},
+  {jp:'高速道路', audioText:'こうそくどうろ', audioFile:'ai16-wort-23.mp3', de:'Autobahn; Schnellstraße', kind:'Wort', note:'高速（こうそく）= hohe Geschwindigkeit; 道路（どうろ）= Straße.'},
+  {jp:'高速', audioText:'こうそく', audioFile:'ai16-wort-24.mp3', de:'hohe Geschwindigkeit; Schnell…', kind:'Wort', note:'Zum Beispiel 高速道路（こうそくどうろ）= Autobahn.'},
+  {jp:'話し合う', audioText:'はなしあう', audioFile:'ai16-wort-25.mp3', de:'miteinander sprechen; diskutieren', kind:'Wort', note:'話す（はなす）+ 合う（あう）= miteinander sprechen.'},
+  {jp:'ディスカッションする', audioText:'ディスカッションする', audioFile:'ai16-wort-26.mp3', de:'diskutieren; eine Diskussion führen', kind:'Wort', note:'Lehnwort aus dem Englischen discussion.'},
+  {jp:'夏', audioText:'なつ', audioFile:'ai16-wort-27.mp3', de:'Sommer', kind:'Wort', note:'夏休み（なつやすみ）= Sommerferien.'},
+  {jp:'時間を守る', audioText:'じかんをまもる', audioFile:'ai16-wort-28.mp3', de:'pünktlich sein; die Zeit einhalten', kind:'Ausdruck', note:'約束の時間を守る = die vereinbarte Zeit einhalten.'},
+  {jp:'大切', audioText:'たいせつ', audioFile:'ai16-wort-29.mp3', de:'wichtig; wertvoll', kind:'Wort', note:'大切なこと = etwas Wichtiges.'},
+  {jp:'毎年', audioText:'まいとし', audioFile:'ai16-wort-30.mp3', de:'jedes Jahr', kind:'Wort', note:'Auch まいねん gelesen; hier ist 毎年（まいとし）notiert.'},
+  {jp:'直す', audioText:'なおす', audioFile:'ai16-wort-31.mp3', de:'reparieren; korrigieren; in Ordnung bringen', kind:'Wort', note:'Fehler korrigieren oder etwas reparieren.'},
+  {jp:'修理する', audioText:'しゅうりする', audioFile:'ai16-wort-32.mp3', de:'reparieren; eine Reparatur durchführen', kind:'Wort', note:'修理（しゅうり）= Reparatur; 修理する = reparieren.'},
+  {jp:'午後', audioText:'ごご', audioFile:'ai16-wort-33.mp3', de:'Nachmittag; PM', kind:'Wort', note:'午後3時（ごごさんじ）= 15 Uhr.'},
+  {jp:'分ける', audioText:'わける', audioFile:'ai16-wort-34.mp3', de:'teilen; aufteilen; trennen', kind:'Wort', note:'ケーキを分ける = einen Kuchen aufteilen.'}
 ];
 const puzzles = [
  {de:'Danach bin ich in der Stadt spazieren gegangen.',parts:['そのあとで','まちで','散歩しました。']},
@@ -318,6 +358,13 @@ const puzzles = [
  {de:'Kennst du dich gut mit Biersorten aus?',parts:['ビールの','種類について','よく','知っていますか？']},
  {de:'Ich bekomme keinen Jetlag.',parts:['時差ぼけ','しません。']},
  {de:'Sich den Schweiß abwischen.',parts:['汗を','ふきます。']},
+
+ {de:'Das Miso habe ich auch hinzugegeben.',parts:['味噌も','入れました。']},
+ {de:'Hast du Matcha getrunken, als du in Düsseldorf gewohnt hast?',parts:['デュッセルドルフに','住んでいたとき、','家で抹茶を','飲みましたか？']},
+ {de:'Hast du Matcha für zu Hause gekauft, als du in Düsseldorf gewohnt hast?',parts:['デュッセルドルフに','住んでいたとき、','家用に抹茶を','買いましたか？']},
+ {de:'Wenn etwas nicht reicht, sollte man darüber sprechen.',parts:['足りないときは','話し合うと','いいです。']},
+ {de:'Pünktlich zu sein ist wichtig.',parts:['時間を守ることは','大切です。']},
+ {de:'Ich repariere es am Nachmittag.',parts:['午後に','直します。']}
 ];
 const kanjiItems = [
   {word:'散歩',reading:'さんぽ',de:'Spaziergang'}, {word:'外',reading:'そと',de:'draußen'},
@@ -405,8 +452,31 @@ const kanjiItems = [
   {word:'湖',reading:'みずうみ',de:'See'}, {word:'現金',reading:'げんきん',de:'Bargeld'},
   {word:'驚く',reading:'おどろく',de:'überrascht sein'}, {word:'種類',reading:'しゅるい',de:'Art; Sorte'},
   {word:'知る',reading:'しる',de:'wissen; kennen'}
+
+  {word:'客',reading:'きゃく',de:'Kunde; Gast'}, {word:'最初',reading:'さいしょ',de:'Anfang; zuerst'},
+  {word:'一番目',reading:'いちばんめ',de:'der / die Erste'}, {word:'二番目',reading:'にばんめ',de:'der / die Zweite'},
+  {word:'三番目',reading:'さんばんめ',de:'der / die Dritte'}, {word:'材料',reading:'ざいりょう',de:'Zutat; Material'},
+  {word:'味噌',reading:'みそ',de:'Miso'}, {word:'入れる',reading:'いれる',de:'hineintun; hinzufügen'},
+  {word:'住む',reading:'すむ',de:'wohnen'}, {word:'抹茶',reading:'まっちゃ',de:'Matcha'},
+  {word:'家用',reading:'いえよう',de:'für zu Hause'}, {word:'会社用',reading:'かいしゃよう',de:'für die Firma'},
+  {word:'緑茶',reading:'りょくちゃ',de:'grüner Tee'}, {word:'煎茶',reading:'せんちゃ',de:'Sencha'},
+  {word:'玄米茶',reading:'げんまいちゃ',de:'Genmaicha'}, {word:'文句',reading:'もんく',de:'Beschwerde'},
+  {word:'足りない',reading:'たりない',de:'nicht genug sein'}, {word:'炭酸',reading:'たんさん',de:'Kohlensäure'},
+  {word:'高速道路',reading:'こうそくどうろ',de:'Autobahn'}, {word:'話し合う',reading:'はなしあう',de:'diskutieren'},
+  {word:'夏',reading:'なつ',de:'Sommer'}, {word:'時間',reading:'じかん',de:'Zeit'},
+  {word:'守る',reading:'まもる',de:'einhalten; schützen'}, {word:'大切',reading:'たいせつ',de:'wichtig'},
+  {word:'毎年',reading:'まいとし',de:'jedes Jahr'}, {word:'直す',reading:'なおす',de:'reparieren; korrigieren'},
+  {word:'修理',reading:'しゅうり',de:'Reparatur'}, {word:'午後',reading:'ごご',de:'Nachmittag'},
+  {word:'分ける',reading:'わける',de:'teilen'}
 ];
 const rubyReadings = {
+  '客':'きゃく', '最初':'さいしょ', '一番目':'いちばんめ', '二番目':'にばんめ', '三番目':'さんばんめ',
+  '材料':'ざいりょう', '味噌':'みそ', '入れました':'いれました', '住んでいたとき':'すんでいたとき',
+  '抹茶':'まっちゃ', '家用':'いえよう', '会社用':'かいしゃよう', '緑茶':'りょくちゃ',
+  '煎茶':'せんちゃ', 'ほうじ茶':'ほうじちゃ', '玄米茶':'げんまいちゃ', '文句':'もんく',
+  '足りない':'たりない', '炭酸':'たんさん', '高速道路':'こうそくどうろ', '高速':'こうそく',
+  '話し合う':'はなしあう', '夏':'なつ', '時間を守る':'じかんをまもる', '大切':'たいせつ',
+  '毎年':'まいとし', '直す':'なおす', '修理する':'しゅうりする', '午後':'ごご', '分ける':'わける',
   '買いました':'かいました', '散歩':'さんぽ', '外':'そと', '家':'いえ', '屋さん':'やさん', '屋':'や',
   '座って':'すわって', '座る':'すわる', '飲み':'のみ', '飲む':'のむ', '吸い':'すい', '吸う':'すう',
   '帰って':'かえって', '帰る':'かえる', '2時間':'にじかん', '時間':'じかん', '日本語':'にほんご', '勉強':'べんきょう',
@@ -463,6 +533,16 @@ const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const rubyTerms = Object.keys(rubyReadings).sort((a,b)=>b.length-a.length);
 const rubyPattern = new RegExp(Object.entries(rubyReadings).sort((a,b)=>b[0].length-a[0].length).map(([word,reading])=>`${escapeRegExp(word)}(?:（${escapeRegExp(reading)}）)?`).join('|'),'g');
 const rubyOverrides={
+  '一番目のお客さん':'<ruby>一番目<rt>いちばんめ</rt></ruby>のお<ruby>客<rt>きゃく</rt></ruby>さん',
+  '最初のお客さん':'<ruby>最初<rt>さいしょ</rt></ruby>のお<ruby>客<rt>きゃく</rt></ruby>さん',
+  '一番目':'<ruby>一番目<rt>いちばんめ</rt></ruby>', '二番目':'<ruby>二番目<rt>にばんめ</rt></ruby>', '三番目':'<ruby>三番目<rt>さんばんめ</rt></ruby>',
+  '味噌も入れました':'<ruby>味噌<rt>みそ</rt></ruby>も<ruby>入<rt>い</rt></ruby>れました',
+  'デュッセルドルフに住んでいたとき、家で抹茶を飲みましたか？':'デュッセルドルフに<ruby>住<rt>す</rt></ruby>んでいたとき、<ruby>家<rt>いえ</rt></ruby>で<ruby>抹茶<rt>まっちゃ</rt></ruby>を<ruby>飲<rt>の</rt></ruby>みましたか？',
+  'デュッセルドルフに住んでいたとき、家用に抹茶を買いましたか？':'デュッセルドルフに<ruby>住<rt>す</rt></ruby>んでいたとき、<ruby>家用<rt>いえよう</rt></ruby>に<ruby>抹茶<rt>まっちゃ</rt></ruby>を<ruby>買<rt>か</rt></ruby>いましたか？',
+  '家用':'<ruby>家<rt>いえ</rt></ruby><ruby>用<rt>よう</rt></ruby>', '会社用':'<ruby>会社<rt>かいしゃ</rt></ruby><ruby>用<rt>よう</rt></ruby>',
+  '時間を守る':'<ruby>時間<rt>じかん</rt></ruby>を<ruby>守<rt>まも</rt></ruby>る', '修理する':'<ruby>修理<rt>しゅうり</rt></ruby>する',
+  '分ける':'<ruby>分<rt>わ</rt></ruby>ける', '直す':'<ruby>直<rt>なお</rt></ruby>す', '足りない':'<ruby>足<rt>た</rt></ruby>りない',
+  '話し合う':'<ruby>話<rt>はな</rt></ruby>し<ruby>合<rt>あ</rt></ruby>う',
   '2時間':'2<ruby>時間<rt>じかん</rt></ruby>', '昼12時':'<ruby>昼<rt>ひる</rt></ruby>12<ruby>時<rt>じ</rt></ruby>',
   '夜8時':'<ruby>夜<rt>よる</rt></ruby>8<ruby>時<rt>じ</rt></ruby>', '12時':'12<ruby>時<rt>じ</rt></ruby>',
   '8時':'8<ruby>時<rt>じ</rt></ruby>', '8杯':'8<ruby>杯<rt>はい</rt></ruby>', '1度':'1<ruby>度<rt>ど</rt></ruby>',
@@ -513,7 +593,8 @@ const lessonMeta={
   oct11:{teacher:'hitomi',title:'11. Oktober · Essen, Berlin & Uniformen',itemStart:items.findIndex(item=>item.jp==='昨日、お酒を飲みすぎました。'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='昨日'),kanjiStart:kanjiItems.findIndex(item=>item.word==='昨日')},
   mariOct3:{teacher:'mari',title:'3. Oktober 2026 · Wörter, Einkaufen & Gewohnheiten',itemStart:items.findIndex(item=>item.jp==='方法'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='もう少し'),kanjiStart:kanjiItems.findIndex(item=>item.word==='方法')},
   aiOct8:{teacher:'ai',title:'8. Oktober 2026 · Alltag, Verkehr & Wohnen',itemStart:items.findIndex(item=>item.jp==='免許証'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='会社に'),kanjiStart:kanjiItems.findIndex(item=>item.word==='免許証'),audioReady:true},
-  aiOct13:{teacher:'ai',title:'13. Oktober 2026 · Zeitverschiebung, Regenschirm & Alltag',itemStart:items.findIndex(item=>item.jp==='復習'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='帰るとき、'),kanjiStart:kanjiItems.findIndex(item=>item.word==='復習'),audioReady:true}
+  aiOct13:{teacher:'ai',title:'13. Oktober 2026 · Zeitverschiebung, Regenschirm & Alltag',itemStart:items.findIndex(item=>item.jp==='復習'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='帰るとき、'),kanjiStart:kanjiItems.findIndex(item=>item.word==='復習'),audioReady:true},
+  aiOct16:{teacher:'ai',title:'16. Oktober 2026 · Essen, Tee & Alltag',itemStart:items.findIndex(item=>item.jp==='一番目のお客さん'),puzzleStart:puzzles.findIndex(item=>item.parts[0]==='味噌も'),kanjiStart:kanjiItems.findIndex(item=>item.word==='客'),audioReady:true}
 };
 document.querySelectorAll('[data-teacher-count]').forEach(label=>{const teacher=label.closest('[data-teacher]').dataset.teacher;const count=Object.values(lessonMeta).filter(lesson=>lesson.teacher===teacher).length;label.textContent=count?`${count} Unterrichtstage`:'Noch keine Unterrichtstage'});
 function lessonRange(list,key){const lessons=Object.values(lessonMeta),current=lessonMeta[activeLesson],index=lessons.indexOf(current),start=current?.[key]??0,end=lessons[index+1]?.[key]??list.length;return list.slice(start,end)}
